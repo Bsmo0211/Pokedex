@@ -4,6 +4,7 @@ import 'package:pokedex/core/presentation/providers/splash_provider.dart';
 import 'package:pokedex/features/home/presentation/screens/main_screen.dart';
 import 'package:pokedex/features/pokedex/presentation/screens/pokedex_screen.dart';
 import 'package:pokedex/features/pokedex/presentation/screens/pokemon_details_screen.dart';
+import 'package:pokedex/features/regions/presentation/screen/regions_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:pokedex/features/onboarding/presentation/screen/onboarding_screen.dart';
 import 'package:pokedex/core/presentation/screens/splash_screen.dart';
@@ -63,8 +64,7 @@ GoRouter appRouter(Ref ref) {
             routes: [
               GoRoute(
                 path: '/regions',
-                builder: (context, state) =>
-                    const Center(child: Text('Regiones')),
+                builder: (context, state) => const RegionScreen(),
               ),
             ],
           ),
