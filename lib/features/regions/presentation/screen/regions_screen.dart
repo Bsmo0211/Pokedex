@@ -19,11 +19,7 @@ class _RegionScreenState extends ConsumerState<RegionScreen> {
 
           const Text(
             '¡Muy Pronto Disponible!',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF2D2D2D),
-            ),
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
 
           const Padding(
@@ -32,7 +28,6 @@ class _RegionScreenState extends ConsumerState<RegionScreen> {
               'Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.grey,
                 fontSize: 15,
                 height: 1.4, // Mejora la lectura
               ),

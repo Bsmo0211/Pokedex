@@ -10,7 +10,6 @@ void main() {
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
-  @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
 
@@ -20,8 +19,25 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       locale: const Locale('es'),
       title: 'Pokédex',
-      theme: ThemeData(useMaterial3: true),
       routerConfig: router,
+
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2196F3),
+          brightness: Brightness.light,
+        ),
+      ),
+
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2196F3),
+          brightness: Brightness.dark,
+        ),
+      ),
+
+      themeMode: ThemeMode.system,
     );
   }
 }

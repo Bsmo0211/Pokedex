@@ -15,21 +15,20 @@ class PokedexScreen extends ConsumerStatefulWidget {
 
 class _PokedexScreenState extends ConsumerState<PokedexScreen> {
   final ScrollController _scrollController = ScrollController();
-  bool _isFetching = false; // El candado
+  bool _isFetching = false;
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(() async {
-      // Si falta poco para el final Y no estamos ya buscando...
       if (_scrollController.position.pixels >=
               _scrollController.position.maxScrollExtent - 300 &&
           !_isFetching) {
-        _isFetching = true; // Cerramos candado
+        _isFetching = true;
 
         await ref.read(pokemonListProvider.notifier).fetchNextPage();
 
-        _isFetching = false; // Abrimos candado
+        _isFetching = false;
       }
     });
   }
@@ -47,13 +46,11 @@ class _PokedexScreenState extends ConsumerState<PokedexScreen> {
 
     if (isManualLoading) {
       return const Scaffold(
-        backgroundColor: Colors.white,
         body: Center(child: CircularProgressIndicator(strokeWidth: 3)),
       );
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           'Pokédex',
@@ -61,8 +58,6 @@ class _PokedexScreenState extends ConsumerState<PokedexScreen> {
         ),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
       ),
       body: pokemonListAsync.when(
         data: (pokemonList) {
