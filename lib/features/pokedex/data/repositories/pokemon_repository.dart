@@ -1,56 +1,60 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/core/network/dio_client.dart';
 import 'package:pokedex/features/pokedex/domain/entities/pokemon.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'pokemon_repository.g.dart';
 
-@riverpod
-class PokemonRepository extends _$PokemonRepository {
-  @override
-  void build() {}
+class PokemonRepository {
+  final Ref ref;
+  PokemonRepository(this.ref);
+
+  Future<Pokemon> fetchPokemon(String name) async {
+    final dio = ref.read(dioProvider);
+    try {
+      final response = await dio.get('pokemon/${name.toLowerCase()}');
+      return Pokemon.fromJson(response.data);
+    } on DioException catch (e) {
+      throw Exception('No se pudo cargar el Pokémon: ${e.message}');
+    }
+  }
 
   Future<List<Pokemon>> fetchPokemonList({
     int limit = 20,
     int offset = 0,
   }) async {
-    Dio dio = ref.read(dioProvider);
-    Response<dynamic> response = await dio.get(
+    final dio = ref.read(dioProvider);
+    final response = await dio.get(
       'pokemon',
       queryParameters: {'limit': limit, 'offset': offset},
     );
-    List<dynamic> results = response.data['results'] as List;
 
-    List<Pokemon> pokemonList = [];
+    final List<dynamic> results = response.data['results'];
 
-    /* Procesamos de 5 en 5 para no bloquear el canal de datos, 
-    al procesar las 20 hacemos que se sienta un lag en la pantalla */
-    for (var i = 0; i < results.length; i += 5) {
-      List<dynamic> chunk = results.sublist(
-        i,
-        i + 5 > results.length ? results.length : i + 5,
+    // Usamos Future.wait para peticiones paralelas (más rápido que el bucle de 5 en 5)
+    // Dart maneja esto en el background sin bloquear la UI
+    final pokemonFutures = results.map((p) async {
+      final detailRes = await dio.get(p['url']);
+      final data = detailRes.data;
+
+      // Aquí usamos tu modelo Freezed
+      return Pokemon(
+        id: data['id'],
+        name: data['name'],
+        imageUrl:
+            data['sprites']['other']['official-artwork']['front_default'] ?? '',
+        types: (data['types'] as List)
+            .map((t) => t['type']['name'].toString())
+            .toList(),
       );
+    });
 
-      List<Pokemon> chunkResults = await Future.wait(
-        chunk.map((p) async {
-          Response<dynamic> detailRes = await dio.get(p['url']);
-          dynamic data = detailRes.data;
-          return Pokemon(
-            id: data['id'],
-            name: data['name'],
-            imageUrl:
-                data['sprites']['other']['official-artwork']['front_default'] ??
-                '',
-            types: (data['types'] as List)
-                .map((t) => t['type']['name'].toString())
-                .toList(),
-          );
-        }),
-      );
-
-      pokemonList.addAll(chunkResults);
-    }
-
-    return pokemonList;
+    return await Future.wait(pokemonFutures);
   }
+}
+
+@riverpod
+PokemonRepository pokemonRepository(Ref ref) {
+  return PokemonRepository(ref);
 }

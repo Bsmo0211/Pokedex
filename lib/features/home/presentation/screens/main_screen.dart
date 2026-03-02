@@ -1,29 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pokedex/features/home/providers/navigation_providers.dart';
-import 'package:pokedex/features/pokedex/presentation/screen/pokedex_screen.dart';
 
-class MainScreen extends ConsumerWidget {
-  const MainScreen({super.key});
+import 'package:go_router/go_router.dart';
+
+class MainScreen extends StatelessWidget {
+  final StatefulNavigationShell navigationShell;
+
+  const MainScreen({super.key, required this.navigationShell});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final selectedIndex = ref.watch(bottomNavIndexProvider);
-
-    // Aquí defines qué se ve en cada pestaña
-    final screens = [
-      const PokedexScreen(), // Pestaña 0: Tu lista actual
-      const Center(child: Text('Regiones')), // Pestaña 1
-      const Center(child: Text('Favoritos')), // Pestaña 2
-      const Center(child: Text('Perfil')), // Pestaña 3
-    ];
-
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: selectedIndex, children: screens),
+      body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        onTap: (index) =>
-            ref.read(bottomNavIndexProvider.notifier).state = index,
+        currentIndex: navigationShell.currentIndex,
+        onTap: (index) => navigationShell.goBranch(index),
         type: BottomNavigationBarType.fixed,
         selectedItemColor: const Color(0xFF2196F3),
         unselectedItemColor: Colors.grey,

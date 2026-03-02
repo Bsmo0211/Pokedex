@@ -1,6 +1,6 @@
+import 'package:pokedex/features/pokedex/data/repositories/pokemon_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:pokedex/features/pokedex/domain/entities/pokemon.dart';
-import 'package:pokedex/features/pokedex/data/repositories/pokemon_repository.dart';
 
 part 'pokemon_list_provider.g.dart';
 
@@ -15,7 +15,9 @@ class PokemonList extends _$PokemonList {
   }
 
   Future<List<Pokemon>> _fetchPage({required int offset}) async {
-    PokemonRepository repo = ref.read(pokemonRepositoryProvider.notifier);
+    final repo = ref.read(pokemonRepositoryProvider);
+
+    // 2. Llamas al método normalmente.
     return await repo.fetchPokemonList(limit: _limit, offset: offset);
   }
 

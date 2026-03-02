@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pokedex/features/pokedex/presentation/providers/pokemon_list_provider.dart';
 import 'package:pokedex/features/pokedex/presentation/widgets/pokedex_error.dart';
 import 'package:pokedex/features/pokedex/presentation/widgets/pokemon_card.dart';
-import '../providers/pokemon_list_provider.dart';
-// Tu provider en carpeta
 
 final isManualLoadingProvider = StateProvider<bool>((ref) => false);
 

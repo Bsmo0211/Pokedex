@@ -15,19 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-Pokemon _$PokemonFromJson(Map<String, dynamic> json) {
-  return _Pokemon.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Pokemon {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   List<String> get types => throw _privateConstructorUsedError;
-
-  /// Serializes this Pokemon to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Pokemon
   /// with the given fields replaced by the non-null parameter values.
@@ -141,7 +134,7 @@ class __$$PokemonImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$PokemonImpl implements _Pokemon {
   const _$PokemonImpl({
     required this.id,
@@ -149,9 +142,6 @@ class _$PokemonImpl implements _Pokemon {
     required this.imageUrl,
     required final List<String> types,
   }) : _types = types;
-
-  factory _$PokemonImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PokemonImplFromJson(json);
 
   @override
   final int id;
@@ -184,7 +174,6 @@ class _$PokemonImpl implements _Pokemon {
             const DeepCollectionEquality().equals(other._types, _types));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
@@ -201,11 +190,6 @@ class _$PokemonImpl implements _Pokemon {
   @pragma('vm:prefer-inline')
   _$$PokemonImplCopyWith<_$PokemonImpl> get copyWith =>
       __$$PokemonImplCopyWithImpl<_$PokemonImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PokemonImplToJson(this);
-  }
 }
 
 abstract class _Pokemon implements Pokemon {
@@ -215,8 +199,6 @@ abstract class _Pokemon implements Pokemon {
     required final String imageUrl,
     required final List<String> types,
   }) = _$PokemonImpl;
-
-  factory _Pokemon.fromJson(Map<String, dynamic> json) = _$PokemonImpl.fromJson;
 
   @override
   int get id;
