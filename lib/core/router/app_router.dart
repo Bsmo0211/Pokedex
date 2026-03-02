@@ -2,10 +2,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex/core/presentation/providers/splash_provider.dart';
 import 'package:pokedex/features/home/presentation/screens/main_screen.dart';
+import 'package:pokedex/features/pokedex/presentation/screens/pokedex_screen.dart';
+import 'package:pokedex/features/pokedex/presentation/screens/pokemon_details_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:pokedex/features/onboarding/presentation/screen/onboarding_screen.dart';
 import 'package:pokedex/core/presentation/screens/splash_screen.dart';
 import 'package:pokedex/features/onboarding/presentation/providers/onboarding_storage_provider.dart';
+import 'package:flutter/material.dart';
 
 part 'app_router.g.dart';
 
@@ -16,44 +19,76 @@ GoRouter appRouter(Ref ref) {
 
   return GoRouter(
     initialLocation: '/splash',
-
     redirect: (context, state) {
-      if (onboardingStatus.isLoading || delayStatus.isLoading) {
-        return null;
-      }
-
+      if (onboardingStatus.isLoading || delayStatus.isLoading) return null;
       final bool isCompleted = onboardingStatus.value ?? false;
-      final bool isAtSplash = state.matchedLocation == '/splash';
-
-      if (isAtSplash) {
+      if (state.matchedLocation == '/splash') {
         return isCompleted ? '/home' : '/onboarding';
       }
-
       return null;
     },
-
     routes: [
       GoRoute(
         path: '/splash',
         builder: (context, state) => const SplashScreen(),
       ),
-
       GoRoute(
         path: '/onboarding',
         builder: (context, state) => const OnboardingScreen(),
       ),
-
-      GoRoute(path: '/home', builder: (context, state) => const MainScreen()),
-
-      // Ejemplo de sub-navegación (Detalle de un Pokémon)
-      // Esta ruta se abre "encima" de la MainScreen cubriendo la barra
-      /* GoRoute(
-        path: '/pokemon/:id',
-        builder: (context, state) {
-          final id = state.pathParameters['id']!;
-          return PokemonDetailScreen(id: id); // Pantalla de detalle
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return MainScreen(navigationShell: navigationShell);
         },
-      ), */
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/home',
+                builder: (context, state) => const PokedexScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'pokemon/:name',
+                    builder: (context, state) {
+                      final name = state.pathParameters['name']!;
+                      return PokemonDetailsScreen(pokemonName: name);
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          // RAMA 2: Regiones
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/regions',
+                builder: (context, state) =>
+                    const Center(child: Text('Regiones')),
+              ),
+            ],
+          ),
+          // RAMA 3: Favoritos
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/favorites',
+                builder: (context, state) =>
+                    const Center(child: Text('Favoritos')),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/profile',
+                builder: (context, state) =>
+                    const Center(child: Text('Perfil')),
+              ),
+            ],
+          ),
+        ],
+      ),
     ],
   );
 }
