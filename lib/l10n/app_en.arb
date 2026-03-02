@@ -1,0 +1,38 @@
+{
+  "@@locale": "en",
+
+  "onboardingTitle1": "All Pokémon in one place",
+  "@onboardingTitle1": {
+    "description": "Title for the first onboarding screen"
+  },
+
+  "onboardingDesc1": "Access a wide list of Pokémon from all generations created by Nintendo",
+  "@onboardingDesc1": {
+    "description": "Description for the first onboarding screen"
+  },
+
+  "onboardingTitle2": "Keep your Pokédex updated",
+  "@onboardingTitle2": {
+    "description": "Title for the second onboarding screen"
+  },
+
+  "onboardingDesc2": "Sign up and save your profile, favorite Pokémon and much more in the app",
+  "@onboardingDesc2": {
+    "description": "Description for the second onboarding screen"
+  },
+
+  "continueButton": "Continue",
+  "@continueButton": {
+    "description": "Label for the button to go to the next page"
+  },
+
+  "startButton": "Let's Start",
+  "@startButton": {
+    "description": "Label for the button on the last onboarding page"
+  },
+
+  "pokedexTitle": "Pokédex",
+  "@pokedexTitle": {
+    "description": "Main title for the home screen list"
+  }
+}

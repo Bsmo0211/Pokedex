@@ -1,0 +1,38 @@
+{
+  "@@locale": "es",
+
+  "onboardingTitle1": "Todos los Pokémon en un solo lugar",
+  "@onboardingTitle1": {
+    "description": "Título de la primera pantalla de bienvenida"
+  },
+
+  "onboardingDesc1": "Accede a una amplia lista de Pokémon de todas las generaciones creados por Nintendo",
+  "@onboardingDesc1": {
+    "description": "Descripción de la primera pantalla de bienvenida"
+  },
+
+  "onboardingTitle2": "Mantén tu Pokédex actualizada",
+  "@onboardingTitle2": {
+    "description": "Título de la segunda pantalla de bienvenida"
+  },
+
+  "onboardingDesc2": "Regístrate y guarda tu perfil, Pokémon favoritos y mucho más en la aplicación",
+  "@onboardingDesc2": {
+    "description": "Descripción de la segunda pantalla de bienvenida"
+  },
+
+  "continueButton": "Continuar",
+  "@continueButton": {
+    "description": "Texto del botón para avanzar de página"
+  },
+
+  "startButton": "Empecemos",
+  "@startButton": {
+    "description": "Texto del botón final del tutorial"
+  },
+
+  "pokedexTitle": "Pokédex",
+  "@pokedexTitle": {
+    "description": "Título principal de la lista de Pokémon"
+  }
+}
