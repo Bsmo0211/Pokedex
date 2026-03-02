@@ -15,7 +15,6 @@ class OnboardingScreen extends ConsumerWidget {
     PageController pageController = PageController();
 
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
