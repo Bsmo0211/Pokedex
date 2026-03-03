@@ -33,11 +33,7 @@ class PokedexErrorWidget extends StatelessWidget {
             child: Text(
               'No pudimos cargar la información en este momento. Verifica tu conexión o intenta nuevamente más tarde.',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 15,
-                height: 1.4, // Mejora la lectura
-              ),
+              style: TextStyle(color: Colors.grey, fontSize: 15, height: 1.4),
             ),
           ),
 
@@ -45,12 +41,12 @@ class PokedexErrorWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
             child: SizedBox(
               width: double.infinity,
-              height: 60, // Botón un poco más robusto
+              height: 60,
               child: ElevatedButton(
                 onPressed: onRetry,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF2196F3),
-                  elevation: 0, // En el diseño se ve plano/moderno
+                  elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),

@@ -17,7 +17,7 @@ class MyApp extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      locale: const Locale('es'),
+      locale: const Locale('en'),
       title: 'Pokédex',
       routerConfig: router,
 

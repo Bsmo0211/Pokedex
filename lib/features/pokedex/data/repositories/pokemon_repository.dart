@@ -11,9 +11,11 @@ class PokemonRepository {
   PokemonRepository(this.ref);
 
   Future<Pokemon> fetchPokemon(String name) async {
-    final dio = ref.read(dioProvider);
+    Dio dio = ref.read(dioProvider);
     try {
-      final response = await dio.get('pokemon/${name.toLowerCase()}');
+      Response<dynamic> response = await dio.get(
+        'pokemon/${name.toLowerCase()}',
+      );
       return Pokemon.fromJson(response.data);
     } on DioException catch (e) {
       throw Exception('No se pudo cargar el Pokémon: ${e.message}');
@@ -24,33 +26,45 @@ class PokemonRepository {
     int limit = 20,
     int offset = 0,
   }) async {
-    final dio = ref.read(dioProvider);
-    final response = await dio.get(
+    const int batchSize = 5;
+    Dio dio = ref.read(dioProvider);
+    Response<dynamic> response = await dio.get(
       'pokemon',
       queryParameters: {'limit': limit, 'offset': offset},
     );
 
-    final List<dynamic> results = response.data['results'];
+    List<dynamic> results = response.data['results'];
+    List<Pokemon> allPokemon = [];
 
-    // Usamos Future.wait para peticiones paralelas (más rápido que el bucle de 5 en 5)
-    // Dart maneja esto en el background sin bloquear la UI
-    final pokemonFutures = results.map((p) async {
-      final detailRes = await dio.get(p['url']);
-      final data = detailRes.data;
+    //TODO: preguntar que es mejor los 20 de una o 5 a 5
+    for (int i = 0; i < results.length; i += batchSize) {
+      int end = (i + batchSize < results.length)
+          ? i + batchSize
+          : results.length;
+      List<dynamic> chunk = results.sublist(i, end);
 
-      // Aquí usamos tu modelo Freezed
-      return Pokemon(
-        id: data['id'],
-        name: data['name'],
-        imageUrl:
-            data['sprites']['other']['official-artwork']['front_default'] ?? '',
-        types: (data['types'] as List)
-            .map((t) => t['type']['name'].toString())
-            .toList(),
-      );
-    });
+      Iterable<Future<Pokemon>> chunkFutures = chunk.map((p) async {
+        Response<dynamic> detailRes = await dio.get(p['url']);
+        dynamic data = detailRes.data;
 
-    return await Future.wait(pokemonFutures);
+        return Pokemon(
+          id: data['id'],
+          name: data['name'],
+          imageUrl:
+              data['sprites']['other']['official-artwork']['front_default'] ??
+              '',
+          types: (data['types'] as List)
+              .map((t) => t['type']['name'].toString())
+              .toList(),
+        );
+      });
+
+      List<Pokemon> chunkResults = await Future.wait(chunkFutures);
+
+      allPokemon.addAll(chunkResults);
+    }
+
+    return allPokemon;
   }
 }
 

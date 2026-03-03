@@ -27,10 +27,7 @@ class _RegionScreenState extends ConsumerState<RegionScreen> {
             child: Text(
               'Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 15,
-                height: 1.4, // Mejora la lectura
-              ),
+              style: TextStyle(fontSize: 15, height: 1.4),
             ),
           ),
         ],

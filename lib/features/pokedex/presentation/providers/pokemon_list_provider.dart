@@ -16,8 +16,6 @@ class PokemonList extends _$PokemonList {
 
   Future<List<Pokemon>> _fetchPage({required int offset}) async {
     final repo = ref.read(pokemonRepositoryProvider);
-
-    // 2. Llamas al método normalmente.
     return await repo.fetchPokemonList(limit: _limit, offset: offset);
   }
 
