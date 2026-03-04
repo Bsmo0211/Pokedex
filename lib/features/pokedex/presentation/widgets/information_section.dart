@@ -24,7 +24,7 @@ class InformationSection extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color: baseColor.withValues(alpha: 0.7),
+              color: Color.lerp(baseColor, Colors.black, 0.25),
             ),
           ),
           Text(
