@@ -32,7 +32,7 @@ class InformationSection extends StatelessWidget {
             style: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF2D2D2D),
+              color: Colors.black87,
             ),
           ),
           const SizedBox(height: 4),
