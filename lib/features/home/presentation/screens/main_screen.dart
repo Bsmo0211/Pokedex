@@ -14,6 +14,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         currentIndex: navigationShell.currentIndex,
         onTap: (index) => navigationShell.goBranch(index),
         type: BottomNavigationBarType.fixed,

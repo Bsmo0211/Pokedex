@@ -18,11 +18,13 @@ class MyApp extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      locale: const Locale('es'),
+      locale: const Locale('en'),
       title: 'Pokédex',
       routerConfig: router,
 
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF2196F3),
@@ -31,6 +33,8 @@ class MyApp extends ConsumerWidget {
       ),
 
       darkTheme: ThemeData(
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF2196F3),
