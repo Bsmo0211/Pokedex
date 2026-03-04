@@ -73,7 +73,7 @@ class _PokemonCardState extends State<PokemonCard> {
                   isHovered: _isHovered,
                 ),
 
-                const FavoriteButton(),
+                FavoriteButton(pokemon: widget.pokemon),
               ],
             ),
           ),
