@@ -51,7 +51,7 @@ GoRouter appRouter(Ref ref) {
                   GoRoute(
                     path: 'pokemon/:name',
                     builder: (context, state) {
-                      final name = state.pathParameters['name']!;
+                      String name = state.pathParameters['name']!;
                       return PokemonDetailsScreen(pokemonName: name);
                     },
                   ),
@@ -59,7 +59,7 @@ GoRouter appRouter(Ref ref) {
               ),
             ],
           ),
-          // RAMA 2: Regiones
+
           StatefulShellBranch(
             routes: [
               GoRoute(

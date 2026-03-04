@@ -29,7 +29,7 @@ class _PokemonCardState extends State<PokemonCard> {
       onTapDown: (_) => setState(() => _isHovered = true),
       onTapUp: (_) => setState(() => _isHovered = false),
       onTapCancel: () => setState(() => _isHovered = false),
-      onTap: () => context.push('/home/pokemon/${widget.pokemon.name}'),
+      onTap: () => context.go('/home/pokemon/${widget.pokemon.name}'),
 
       child: AnimatedScale(
         scale: scale,
