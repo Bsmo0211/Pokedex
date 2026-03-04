@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pokedex/core/utils/get_type_colors.dart';
 import 'package:pokedex/core/utils/get_type_icon.dart';
 import 'package:pokedex/features/pokedex/domain/entities/pokemon.dart';
 
@@ -56,6 +57,26 @@ class ImageSection extends StatelessWidget {
                 pokemon.imageUrl,
                 height: 90,
                 fit: BoxFit.contain,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+
+                  return SizedBox(
+                    height: 90,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: GetTypeColors.getTypeColor(pokemon.types.first),
+                      ),
+                    ),
+                  );
+                },
+
+                errorBuilder: (context, error, stackTrace) => const Icon(
+                  Icons.broken_image,
+                  size: 50,
+                  color: Colors.grey,
+                ),
               ),
             ),
           ],
