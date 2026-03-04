@@ -24,12 +24,10 @@ class _PokedexScreenState extends ConsumerState<PokedexScreen> {
 
   List<Pokemon> _getFilteredPokemon(List<Pokemon> allPokemon) {
     return allPokemon.where((pokemon) {
-      // Filtro por nombre
       final bool matchesName = pokemon.name.toLowerCase().contains(
         searchQuery.toLowerCase(),
       );
 
-      // Filtro por tipo
       final bool matchesType =
           selectedTypes.isEmpty ||
           pokemon.types.any((t) => selectedTypes.contains(t.toLowerCase()));
@@ -112,7 +110,20 @@ class _PokedexScreenState extends ConsumerState<PokedexScreen> {
         },
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => PokedexErrorWidget(
-          onRetry: () => ref.invalidate(pokemonListProvider),
+          title: l10n.errorTitle,
+          massage: l10n.errorTitle,
+          needButton: true,
+          onRetry: () async {
+            ref.read(isManualLoadingProvider.notifier).state = true;
+            try {
+              ref.invalidate(pokemonListProvider);
+              await ref.read(pokemonListProvider.future);
+            } catch (e) {
+              debugPrint("Error: $e");
+            } finally {
+              ref.read(isManualLoadingProvider.notifier).state = false;
+            }
+          },
         ),
       ),
     );
