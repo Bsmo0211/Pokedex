@@ -43,6 +43,12 @@
   "retryButton": "Retry",
   "@retryButton": {},
 
+  "filterTitle": "Filter by your preferences",
+  "filterTypeLabel": "Type",
+  "filterApply": "Apply",
+  "filterCancel": "Cancel",
+  "searchHint": "Search Pokémon...",
+
 "comingSoonTitle": "Coming Soon!",
   "@comingSoonTitle": {},
   "comingSoonMessage": "We are working hard to bring you this section. Check back later to discover all the new features.",

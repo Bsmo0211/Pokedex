@@ -170,6 +170,36 @@ abstract class AppLocalizations {
   /// **'Reintentar'**
   String get retryButton;
 
+  /// No description provided for @filterTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Filtra por tus preferencias'**
+  String get filterTitle;
+
+  /// No description provided for @filterTypeLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo'**
+  String get filterTypeLabel;
+
+  /// No description provided for @filterApply.
+  ///
+  /// In es, this message translates to:
+  /// **'Aplicar'**
+  String get filterApply;
+
+  /// No description provided for @filterCancel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar'**
+  String get filterCancel;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar Pokémon...'**
+  String get searchHint;
+
   /// No description provided for @navPokedex.
   ///
   /// In es, this message translates to:

@@ -48,6 +48,12 @@
   "retryButton": "Reintentar",
   "@retryButton": {},
 
+  "filterTitle": "Filtra por tus preferencias",
+  "filterTypeLabel": "Tipo",
+  "filterApply": "Aplicar",
+  "filterCancel": "Cancelar",
+  "searchHint": "Buscar Pokémon...",
+
   "navPokedex": "Pokedex",
   "@navPokedex": {},
   "navRegions": "Regiones",

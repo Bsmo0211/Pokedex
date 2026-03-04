@@ -49,6 +49,21 @@ class AppLocalizationsEs extends AppLocalizations {
   String get retryButton => 'Reintentar';
 
   @override
+  String get filterTitle => 'Filtra por tus preferencias';
+
+  @override
+  String get filterTypeLabel => 'Tipo';
+
+  @override
+  String get filterApply => 'Aplicar';
+
+  @override
+  String get filterCancel => 'Cancelar';
+
+  @override
+  String get searchHint => 'Buscar Pokémon...';
+
+  @override
   String get navPokedex => 'Pokedex';
 
   @override
