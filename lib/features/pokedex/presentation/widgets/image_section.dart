@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokedex/core/utils/get_type_icon.dart';
 import 'package:pokedex/features/pokedex/domain/entities/pokemon.dart';
 
@@ -36,11 +37,15 @@ class ImageSection extends StatelessWidget {
               turns: isHovered ? 0.05 : 0,
               duration: const Duration(milliseconds: 300),
               child: Opacity(
-                opacity: 0.15,
-                child: Icon(
-                  GetTypeIcon.getTypeIcon(pokemon.types.first),
-                  size: 100,
-                  color: Colors.white,
+                opacity: 0.5,
+                child: SvgPicture.asset(
+                  GetTypeSvg.getTypeSvg(pokemon.types.first),
+                  width: 100,
+                  height: 100,
+                  colorFilter: const ColorFilter.mode(
+                    Colors.white,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),

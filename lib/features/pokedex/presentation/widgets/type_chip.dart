@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokedex/core/utils/get_type_colors.dart';
 import 'package:pokedex/core/utils/get_type_icon.dart';
+import 'package:pokedex/core/utils/get_type_translator.dart';
 
 class TypeChip extends StatelessWidget {
   final String type;
@@ -17,10 +19,16 @@ class TypeChip extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(GetTypeIcon.getTypeIcon(type), color: Colors.white, size: 12),
+          SvgPicture.asset(
+            GetTypeSvg.getTypeSvg(type),
+            width: 10,
+            height: 10,
+
+            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+          ),
           const SizedBox(width: 4),
           Text(
-            type.toUpperCase(),
+            TypeTranslator.translate(context, type),
             style: const TextStyle(
               color: Colors.white,
               fontSize: 10,
