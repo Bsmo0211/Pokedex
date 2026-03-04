@@ -30,4 +30,87 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get pokedexTitle => 'Pokédex';
+
+  @override
+  String get comingSoonTitle => '¡Muy Pronto Disponible!';
+
+  @override
+  String get comingSoonMessage =>
+      'Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.';
+
+  @override
+  String get errorTitle => 'Algo salió mal...';
+
+  @override
+  String get errorMessage =>
+      'No pudimos cargar la información en este momento. Verifica tu conexión o intenta nuevamente más tarde.';
+
+  @override
+  String get retryButton => 'Reintentar';
+
+  @override
+  String get navPokedex => 'Pokedex';
+
+  @override
+  String get navRegions => 'Regiones';
+
+  @override
+  String get navFavorites => 'Favoritos';
+
+  @override
+  String get navProfile => 'Perfil';
+
+  @override
+  String get typeBug => 'Bicho';
+
+  @override
+  String get typeDark => 'Siniestro';
+
+  @override
+  String get typeDragon => 'Dragón';
+
+  @override
+  String get typeElectric => 'Eléctrico';
+
+  @override
+  String get typeFairy => 'Hada';
+
+  @override
+  String get typeFighting => 'Lucha';
+
+  @override
+  String get typeFire => 'Fuego';
+
+  @override
+  String get typeFlying => 'Volador';
+
+  @override
+  String get typeGhost => 'Fantasma';
+
+  @override
+  String get typeGrass => 'Planta';
+
+  @override
+  String get typeGround => 'Tierra';
+
+  @override
+  String get typeIce => 'Hielo';
+
+  @override
+  String get typeNormal => 'Normal';
+
+  @override
+  String get typePoison => 'Veneno';
+
+  @override
+  String get typePsychic => 'Psíquico';
+
+  @override
+  String get typeRock => 'Roca';
+
+  @override
+  String get typeSteel => 'Acero';
+
+  @override
+  String get typeWater => 'Agua';
 }

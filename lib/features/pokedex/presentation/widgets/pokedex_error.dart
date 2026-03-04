@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/core/utils/assets_constants.dart';
 import 'package:pokedex/core/utils/change_color_image_error.dart';
+import 'package:pokedex/l10n/app_localizations.dart';
 
 class PokedexErrorWidget extends StatelessWidget {
   final VoidCallback onRetry;
@@ -8,6 +10,8 @@ class PokedexErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations l10n = AppLocalizations.of(context)!;
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -16,24 +20,31 @@ class PokedexErrorWidget extends StatelessWidget {
             colorFilter: const ColorFilter.matrix(
               ChangeColorImageError.changeColor,
             ),
-            child: Image.asset('assets/images/magikarp_error.png', width: 220),
+            child: Image.asset(
+              '${AssetsManager.imagesPath}magikarp_error.png',
+              width: 220,
+            ),
           ),
 
-          const Text(
-            'Algo salió mal...',
-            style: TextStyle(
+          Text(
+            l10n.errorTitle,
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Color(0xFF2D2D2D),
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
             child: Text(
-              'No pudimos cargar la información en este momento. Verifica tu conexión o intenta nuevamente más tarde.',
+              l10n.errorMessage,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey, fontSize: 15, height: 1.4),
+              style: const TextStyle(
+                color: Colors.grey,
+                fontSize: 15,
+                height: 1.4,
+              ),
             ),
           ),
 
@@ -51,9 +62,9 @@ class PokedexErrorWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                child: const Text(
-                  'Reintentar',
-                  style: TextStyle(
+                child: Text(
+                  l10n.retryButton,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

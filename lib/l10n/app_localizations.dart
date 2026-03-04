@@ -139,6 +139,168 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Pokédex'**
   String get pokedexTitle;
+
+  /// No description provided for @comingSoonTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Muy Pronto Disponible!'**
+  String get comingSoonTitle;
+
+  /// No description provided for @comingSoonMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Estamos trabajando para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.'**
+  String get comingSoonMessage;
+
+  /// No description provided for @errorTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Algo salió mal...'**
+  String get errorTitle;
+
+  /// No description provided for @errorMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'No pudimos cargar la información en este momento. Verifica tu conexión o intenta nuevamente más tarde.'**
+  String get errorMessage;
+
+  /// No description provided for @retryButton.
+  ///
+  /// In es, this message translates to:
+  /// **'Reintentar'**
+  String get retryButton;
+
+  /// No description provided for @navPokedex.
+  ///
+  /// In es, this message translates to:
+  /// **'Pokedex'**
+  String get navPokedex;
+
+  /// No description provided for @navRegions.
+  ///
+  /// In es, this message translates to:
+  /// **'Regiones'**
+  String get navRegions;
+
+  /// No description provided for @navFavorites.
+  ///
+  /// In es, this message translates to:
+  /// **'Favoritos'**
+  String get navFavorites;
+
+  /// No description provided for @navProfile.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil'**
+  String get navProfile;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Bicho'**
+  String get typeBug;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Siniestro'**
+  String get typeDark;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Dragón'**
+  String get typeDragon;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Eléctrico'**
+  String get typeElectric;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Hada'**
+  String get typeFairy;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Lucha'**
+  String get typeFighting;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Fuego'**
+  String get typeFire;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Volador'**
+  String get typeFlying;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Fantasma'**
+  String get typeGhost;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Planta'**
+  String get typeGrass;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Tierra'**
+  String get typeGround;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Hielo'**
+  String get typeIce;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Normal'**
+  String get typeNormal;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Veneno'**
+  String get typePoison;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Psíquico'**
+  String get typePsychic;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Roca'**
+  String get typeRock;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Acero'**
+  String get typeSteel;
+
+  /// Color
+  ///
+  /// In es, this message translates to:
+  /// **'Agua'**
+  String get typeWater;
 }
 
 class _AppLocalizationsDelegate

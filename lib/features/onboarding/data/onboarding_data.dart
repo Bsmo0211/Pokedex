@@ -4,7 +4,7 @@ import 'package:pokedex/features/onboarding/domain/entities/onboarding_item.dart
 import 'package:pokedex/l10n/app_localizations.dart';
 
 List<OnboardingItem> getOnboardingPages(BuildContext context) {
-  final l10n = AppLocalizations.of(context)!;
+  AppLocalizations l10n = AppLocalizations.of(context)!;
 
   return [
     OnboardingItem(
