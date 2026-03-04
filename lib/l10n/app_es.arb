@@ -54,6 +54,21 @@
   "filterCancel": "Cancelar",
   "searchHint": "Buscar Pokémon...",
 
+  "noFavoritesTitle": "No has marcado ningún Pokémon como favorito",
+    "noFavoritesMessage": "Haz clic en el ícono de corazón de tus Pokémon favoritos y aparecerán aquí.",
+    "favoritesTitle": "Favoritos",
+
+   "pokemonRemoved": "{name} eliminado de favoritos",
+    "@pokemonRemoved": {
+      "description": "Mensaje mostrado al eliminar un pokemon",
+      "placeholders": {
+        "name": {
+          "type": "String",
+          "example": "Pikachu"
+        }
+      }
+    },
+
   "navPokedex": "Pokedex",
   "@navPokedex": {},
   "navRegions": "Regiones",

@@ -49,6 +49,12 @@
   "filterCancel": "Cancel",
   "searchHint": "Search Pokémon...",
 
+  "noFavoritesTitle": "You haven't marked any Pokémon as favorites",
+    "noFavoritesMessage": "Click on the heart icon of your favorite Pokémon and they will appear here.",
+    "favoritesTitle": "Favorites",
+
+    "pokemonRemoved": "{name} removed from favorites",
+
 "comingSoonTitle": "Coming Soon!",
   "@comingSoonTitle": {},
   "comingSoonMessage": "We are working hard to bring you this section. Check back later to discover all the new features.",

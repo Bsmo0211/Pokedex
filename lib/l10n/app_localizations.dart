@@ -200,6 +200,30 @@ abstract class AppLocalizations {
   /// **'Buscar Pokémon...'**
   String get searchHint;
 
+  /// No description provided for @noFavoritesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'No has marcado ningún Pokémon como favorito'**
+  String get noFavoritesTitle;
+
+  /// No description provided for @noFavoritesMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Haz clic en el ícono de corazón de tus Pokémon favoritos y aparecerán aquí.'**
+  String get noFavoritesMessage;
+
+  /// No description provided for @favoritesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Favoritos'**
+  String get favoritesTitle;
+
+  /// Mensaje mostrado al eliminar un pokemon
+  ///
+  /// In es, this message translates to:
+  /// **'{name} eliminado de favoritos'**
+  String pokemonRemoved(String name);
+
   /// No description provided for @navPokedex.
   ///
   /// In es, this message translates to:

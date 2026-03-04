@@ -64,6 +64,21 @@ class AppLocalizationsEs extends AppLocalizations {
   String get searchHint => 'Buscar Pokémon...';
 
   @override
+  String get noFavoritesTitle => 'No has marcado ningún Pokémon como favorito';
+
+  @override
+  String get noFavoritesMessage =>
+      'Haz clic en el ícono de corazón de tus Pokémon favoritos y aparecerán aquí.';
+
+  @override
+  String get favoritesTitle => 'Favoritos';
+
+  @override
+  String pokemonRemoved(String name) {
+    return '$name eliminado de favoritos';
+  }
+
+  @override
   String get navPokedex => 'Pokedex';
 
   @override
