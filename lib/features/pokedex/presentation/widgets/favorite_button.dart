@@ -12,7 +12,7 @@ class FavoriteButton extends StatelessWidget {
         padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.white.withValues(alpha: 0.2),
+          color: const Color.fromARGB(125, 29, 25, 25),
           border: Border.all(color: Colors.white54, width: 1.5),
         ),
         child: const Icon(Icons.favorite_border, color: Colors.white, size: 16),
