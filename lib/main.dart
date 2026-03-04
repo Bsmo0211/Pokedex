@@ -10,6 +10,7 @@ void main() {
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
+  @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
 
@@ -17,7 +18,7 @@ class MyApp extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      locale: const Locale('en'),
+      locale: const Locale('es'),
       title: 'Pokédex',
       routerConfig: router,
 
