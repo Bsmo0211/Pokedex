@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pokedex/core/presentation/providers/splash_provider.dart';
+import 'package:pokedex/features/favorites/presentation/screens/favorites_screen.dart';
 import 'package:pokedex/features/home/presentation/screens/main_screen.dart';
 import 'package:pokedex/features/pokedex/presentation/screens/pokedex_screen.dart';
 import 'package:pokedex/features/pokedex/presentation/screens/pokemon_details_screen.dart';
@@ -73,8 +74,7 @@ GoRouter appRouter(Ref ref) {
             routes: [
               GoRoute(
                 path: '/favorites',
-                builder: (context, state) =>
-                    const Center(child: Text('Favoritos')),
+                builder: (context, state) => const FavoritesScreen(),
               ),
             ],
           ),
