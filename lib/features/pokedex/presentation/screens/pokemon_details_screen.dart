@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/features/pokedex/presentation/providers/pokemon_details_provider.dart';
 import 'package:pokedex/features/pokedex/presentation/screens/pokedex_screen.dart';
 import 'package:pokedex/features/pokedex/presentation/widgets/pokedex_error.dart';
+import 'package:pokedex/l10n/app_localizations.dart';
 
 class PokemonDetailsScreen extends ConsumerWidget {
   final String pokemonName;
@@ -12,6 +13,7 @@ class PokemonDetailsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemonAsync = ref.watch(fetchPokemonDetailProvider(pokemonName));
     final isManualLoading = ref.watch(isManualLoadingProvider);
+    AppLocalizations l10n = AppLocalizations.of(context)!;
 
     if (isManualLoading) {
       return const Scaffold(
@@ -30,6 +32,9 @@ class PokemonDetailsScreen extends ConsumerWidget {
         ),
 
         error: (error, stackTrace) => PokedexErrorWidget(
+          title: l10n.errorTitle,
+          massage: l10n.errorTitle,
+          needButton: true,
           onRetry: () async {
             ref.read(isManualLoadingProvider.notifier).state = true;
             try {

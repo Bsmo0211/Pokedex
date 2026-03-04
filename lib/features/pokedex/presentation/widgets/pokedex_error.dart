@@ -4,9 +4,18 @@ import 'package:pokedex/core/utils/change_color_image_error.dart';
 import 'package:pokedex/l10n/app_localizations.dart';
 
 class PokedexErrorWidget extends StatelessWidget {
-  final VoidCallback onRetry;
+  final String title;
+  final String massage;
+  final VoidCallback? onRetry;
+  final bool needButton;
 
-  const PokedexErrorWidget({super.key, required this.onRetry});
+  const PokedexErrorWidget({
+    super.key,
+    this.onRetry,
+    required this.title,
+    required this.massage,
+    required this.needButton,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +35,23 @@ class PokedexErrorWidget extends StatelessWidget {
             ),
           ),
 
-          Text(
-            l10n.errorTitle,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF2D2D2D),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF2D2D2D),
+              ),
             ),
           ),
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
             child: Text(
-              l10n.errorMessage,
+              massage,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.grey,
@@ -47,32 +60,32 @@ class PokedexErrorWidget extends StatelessWidget {
               ),
             ),
           ),
-
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-            child: SizedBox(
-              width: double.infinity,
-              height: 60,
-              child: ElevatedButton(
-                onPressed: onRetry,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF2196F3),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+          if (needButton)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              child: SizedBox(
+                width: double.infinity,
+                height: 60,
+                child: ElevatedButton(
+                  onPressed: onRetry,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF2196F3),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
-                ),
-                child: Text(
-                  l10n.retryButton,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                  child: Text(
+                    l10n.retryButton,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
         ],
       ),
     );
