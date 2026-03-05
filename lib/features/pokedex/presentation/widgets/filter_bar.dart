@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/core/utils/get_type_icon.dart';
 import 'package:pokedex/features/pokedex/presentation/widgets/type_filter_chip.dart';
 import 'package:pokedex/l10n/app_localizations.dart';
 
 class FilterBar extends StatefulWidget {
   final List<String> selectedTypes;
-  String searchQuery;
+  final String searchQuery;
 
   final Function(String) onSearchChanged;
   final VoidCallback onFiltersChanged;
-  FilterBar({
+  const FilterBar({
     super.key,
     required this.selectedTypes,
     required this.searchQuery,
@@ -52,36 +53,16 @@ class _FilterBarState extends State<FilterBar> {
                       child: Wrap(
                         spacing: 8.0,
                         runSpacing: 8.0,
-                        children:
-                            [
-                                  'bug',
-                                  'dark',
-                                  'dragon',
-                                  'electric',
-                                  'fairy',
-                                  'fighting',
-                                  'fire',
-                                  'flying',
-                                  'ghost',
-                                  'grass',
-                                  'ground',
-                                  'ice',
-                                  'normal',
-                                  'poison',
-                                  'psychic',
-                                  'rock',
-                                  'steel',
-                                  'water',
-                                ]
-                                .map(
-                                  (type) => TypeFilterChip(
-                                    typeKey: type,
-                                    setModalState: setModalState,
-                                    selectedTypes: widget.selectedTypes,
-                                    onChanged: widget.onFiltersChanged,
-                                  ),
-                                )
-                                .toList(),
+                        children: GetTypeSvg.validTypes
+                            .map(
+                              (type) => TypeFilterChip(
+                                typeKey: type,
+                                setModalState: setModalState,
+                                selectedTypes: widget.selectedTypes,
+                                onChanged: widget.onFiltersChanged,
+                              ),
+                            )
+                            .toList(),
                       ),
                     ),
                   ),
@@ -149,6 +130,7 @@ class _FilterBarState extends State<FilterBar> {
   @override
   Widget build(BuildContext context) {
     AppLocalizations l10n = AppLocalizations.of(context)!;
+    final bool hasFilters = widget.selectedTypes.isNotEmpty;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
@@ -169,13 +151,37 @@ class _FilterBarState extends State<FilterBar> {
             ),
           ),
           const SizedBox(width: 12),
+          if (hasFilters)
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    widget.selectedTypes.clear();
+                  });
+                  widget.onFiltersChanged();
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.redAccent,
+                  ),
+                  child: const Icon(Icons.delete_outline, color: Colors.white),
+                ),
+              ),
+            ),
+
           GestureDetector(
             onTap: () => _showFilterModal(context),
             child: Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: Colors.grey[300]!),
+                border: Border.all(
+                  color: Colors.grey[300]!,
+                  width: hasFilters ? 2 : 1,
+                ),
               ),
               child: const Icon(Icons.tune, color: Colors.grey),
             ),

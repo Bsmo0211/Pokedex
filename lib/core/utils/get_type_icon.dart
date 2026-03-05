@@ -1,7 +1,7 @@
 import 'package:pokedex/core/utils/assets_constants.dart';
 
 class GetTypeSvg {
-  static const _validTypes = {
+  static const validTypes = {
     'bug',
     'dark',
     'dragon',
@@ -25,7 +25,7 @@ class GetTypeSvg {
   static String getTypeSvg(String type) {
     String typeName = type.toLowerCase();
 
-    if (_validTypes.contains(typeName)) {
+    if (validTypes.contains(typeName)) {
       return '${AssetsManager.svgPath}$typeName.svg';
     }
 
