@@ -36,14 +36,15 @@ class _PokedexScreenState extends ConsumerState<PokedexScreen> {
     }).toList();
   }
 
-  void _onScroll() async {
+  void _onScroll() {
     if (_scrollController.position.pixels >=
-            _scrollController.position.maxScrollExtent - 300 &&
-        !_isFetching) {
-      _isFetching = true;
-      await ref.read(pokemonListProvider.notifier).fetchNextPage();
-      if (mounted) {
-        _isFetching = false;
+        _scrollController.position.maxScrollExtent - 300) {
+      if (!_isFetching) {
+        // Verificación extra
+        _isFetching = true;
+        ref.read(pokemonListProvider.notifier).fetchNextPage().then((_) {
+          _isFetching = false;
+        });
       }
     }
   }
@@ -99,10 +100,24 @@ class _PokedexScreenState extends ConsumerState<PokedexScreen> {
               ),
               Expanded(
                 child: ListView.builder(
+                  controller: _scrollController,
+
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: filteredList.length,
-                  itemBuilder: (context, index) =>
-                      PokemonCard(pokemon: filteredList[index]),
+                  itemCount:
+                      filteredList.length +
+                      (pokemonListAsync.isLoading ? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (index == filteredList.length) {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+
+                    return PokemonCard(pokemon: filteredList[index]);
+                  },
                 ),
               ),
             ],

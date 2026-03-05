@@ -15,7 +15,7 @@ class PokemonList extends _$PokemonList {
   }
 
   Future<List<Pokemon>> _fetchPage({required int offset}) async {
-    final repo = ref.read(pokemonRepositoryProvider);
+    PokemonRepository repo = ref.read(pokemonRepositoryProvider);
     return await repo.fetchPokemonList(limit: _limit, offset: offset);
   }
 
@@ -23,12 +23,18 @@ class PokemonList extends _$PokemonList {
     if (state.isLoading) return;
 
     List<Pokemon> currentState = state.value ?? [];
-    _offset += _limit;
+    int nextOffset = _offset + _limit;
 
     state = const AsyncLoading<List<Pokemon>>().copyWithPrevious(state);
 
     state = await AsyncValue.guard(() async {
-      List<Pokemon> nextItems = await _fetchPage(offset: _offset);
+      List<Pokemon> nextItems = await _fetchPage(offset: nextOffset);
+
+      if (nextItems.isEmpty) {
+        return currentState;
+      }
+
+      _offset = nextOffset;
       return [...currentState, ...nextItems];
     });
   }

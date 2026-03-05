@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'pokemon.freezed.dart';
+part 'pokemon.g.dart';
 
 @freezed
 class Pokemon with _$Pokemon {
@@ -9,21 +10,13 @@ class Pokemon with _$Pokemon {
     required String name,
     required String imageUrl,
     required List<String> types,
+    required int weight,
+    required int height,
+    required String description,
+    required List<String> abilities,
+    required String category,
   }) = _Pokemon;
 
-  factory Pokemon.fromJson(Map<String, dynamic> json) {
-    return Pokemon(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      imageUrl:
-          json['sprites']?['other']?['official-artwork']?['front_default']
-              as String? ??
-          '',
-      types:
-          (json['types'] as List<dynamic>?)
-              ?.map((e) => e['type']['name'] as String)
-              .toList() ??
-          [],
-    );
-  }
+  factory Pokemon.fromJson(Map<String, dynamic> json) =>
+      _$PokemonFromJson(json);
 }

@@ -15,12 +15,24 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
+Pokemon _$PokemonFromJson(Map<String, dynamic> json) {
+  return _Pokemon.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Pokemon {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   List<String> get types => throw _privateConstructorUsedError;
+  int get weight => throw _privateConstructorUsedError;
+  int get height => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  List<String> get abilities => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
+
+  /// Serializes this Pokemon to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Pokemon
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +45,17 @@ abstract class $PokemonCopyWith<$Res> {
   factory $PokemonCopyWith(Pokemon value, $Res Function(Pokemon) then) =
       _$PokemonCopyWithImpl<$Res, Pokemon>;
   @useResult
-  $Res call({int id, String name, String imageUrl, List<String> types});
+  $Res call({
+    int id,
+    String name,
+    String imageUrl,
+    List<String> types,
+    int weight,
+    int height,
+    String description,
+    List<String> abilities,
+    String category,
+  });
 }
 
 /// @nodoc
@@ -55,6 +77,11 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
     Object? name = null,
     Object? imageUrl = null,
     Object? types = null,
+    Object? weight = null,
+    Object? height = null,
+    Object? description = null,
+    Object? abilities = null,
+    Object? category = null,
   }) {
     return _then(
       _value.copyWith(
@@ -74,6 +101,26 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
                 ? _value.types
                 : types // ignore: cast_nullable_to_non_nullable
                       as List<String>,
+            weight: null == weight
+                ? _value.weight
+                : weight // ignore: cast_nullable_to_non_nullable
+                      as int,
+            height: null == height
+                ? _value.height
+                : height // ignore: cast_nullable_to_non_nullable
+                      as int,
+            description: null == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String,
+            abilities: null == abilities
+                ? _value.abilities
+                : abilities // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            category: null == category
+                ? _value.category
+                : category // ignore: cast_nullable_to_non_nullable
+                      as String,
           )
           as $Val,
     );
@@ -88,7 +135,17 @@ abstract class _$$PokemonImplCopyWith<$Res> implements $PokemonCopyWith<$Res> {
   ) = __$$PokemonImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String imageUrl, List<String> types});
+  $Res call({
+    int id,
+    String name,
+    String imageUrl,
+    List<String> types,
+    int weight,
+    int height,
+    String description,
+    List<String> abilities,
+    String category,
+  });
 }
 
 /// @nodoc
@@ -109,6 +166,11 @@ class __$$PokemonImplCopyWithImpl<$Res>
     Object? name = null,
     Object? imageUrl = null,
     Object? types = null,
+    Object? weight = null,
+    Object? height = null,
+    Object? description = null,
+    Object? abilities = null,
+    Object? category = null,
   }) {
     return _then(
       _$PokemonImpl(
@@ -128,20 +190,49 @@ class __$$PokemonImplCopyWithImpl<$Res>
             ? _value._types
             : types // ignore: cast_nullable_to_non_nullable
                   as List<String>,
+        weight: null == weight
+            ? _value.weight
+            : weight // ignore: cast_nullable_to_non_nullable
+                  as int,
+        height: null == height
+            ? _value.height
+            : height // ignore: cast_nullable_to_non_nullable
+                  as int,
+        description: null == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        abilities: null == abilities
+            ? _value._abilities
+            : abilities // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        category: null == category
+            ? _value.category
+            : category // ignore: cast_nullable_to_non_nullable
+                  as String,
       ),
     );
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PokemonImpl implements _Pokemon {
   const _$PokemonImpl({
     required this.id,
     required this.name,
     required this.imageUrl,
     required final List<String> types,
-  }) : _types = types;
+    required this.weight,
+    required this.height,
+    required this.description,
+    required final List<String> abilities,
+    required this.category,
+  }) : _types = types,
+       _abilities = abilities;
+
+  factory _$PokemonImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PokemonImplFromJson(json);
 
   @override
   final int id;
@@ -158,8 +249,25 @@ class _$PokemonImpl implements _Pokemon {
   }
 
   @override
+  final int weight;
+  @override
+  final int height;
+  @override
+  final String description;
+  final List<String> _abilities;
+  @override
+  List<String> get abilities {
+    if (_abilities is EqualUnmodifiableListView) return _abilities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_abilities);
+  }
+
+  @override
+  final String category;
+
+  @override
   String toString() {
-    return 'Pokemon(id: $id, name: $name, imageUrl: $imageUrl, types: $types)';
+    return 'Pokemon(id: $id, name: $name, imageUrl: $imageUrl, types: $types, weight: $weight, height: $height, description: $description, abilities: $abilities, category: $category)';
   }
 
   @override
@@ -171,9 +279,20 @@ class _$PokemonImpl implements _Pokemon {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            const DeepCollectionEquality().equals(other._types, _types));
+            const DeepCollectionEquality().equals(other._types, _types) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            const DeepCollectionEquality().equals(
+              other._abilities,
+              _abilities,
+            ) &&
+            (identical(other.category, category) ||
+                other.category == category));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
@@ -181,6 +300,11 @@ class _$PokemonImpl implements _Pokemon {
     name,
     imageUrl,
     const DeepCollectionEquality().hash(_types),
+    weight,
+    height,
+    description,
+    const DeepCollectionEquality().hash(_abilities),
+    category,
   );
 
   /// Create a copy of Pokemon
@@ -190,6 +314,11 @@ class _$PokemonImpl implements _Pokemon {
   @pragma('vm:prefer-inline')
   _$$PokemonImplCopyWith<_$PokemonImpl> get copyWith =>
       __$$PokemonImplCopyWithImpl<_$PokemonImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PokemonImplToJson(this);
+  }
 }
 
 abstract class _Pokemon implements Pokemon {
@@ -198,7 +327,14 @@ abstract class _Pokemon implements Pokemon {
     required final String name,
     required final String imageUrl,
     required final List<String> types,
+    required final int weight,
+    required final int height,
+    required final String description,
+    required final List<String> abilities,
+    required final String category,
   }) = _$PokemonImpl;
+
+  factory _Pokemon.fromJson(Map<String, dynamic> json) = _$PokemonImpl.fromJson;
 
   @override
   int get id;
@@ -208,6 +344,16 @@ abstract class _Pokemon implements Pokemon {
   String get imageUrl;
   @override
   List<String> get types;
+  @override
+  int get weight;
+  @override
+  int get height;
+  @override
+  String get description;
+  @override
+  List<String> get abilities;
+  @override
+  String get category;
 
   /// Create a copy of Pokemon
   /// with the given fields replaced by the non-null parameter values.
