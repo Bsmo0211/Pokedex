@@ -13,22 +13,25 @@ class PokemonRepository {
   Future<Pokemon> fetchPokemon(String name) async {
     Dio dio = ref.read(dioProvider);
 
-    final pokemonRes = await dio.get('pokemon/${name.toLowerCase()}');
-    final pokemonData = pokemonRes.data;
+    Response<dynamic> pokemonRes = await dio.get(
+      'pokemon/${name.toLowerCase()}',
+    );
+    dynamic pokemonData = pokemonRes.data;
 
-    final speciesUrl = pokemonData['species']['url'];
-    final speciesRes = await dio.get(speciesUrl);
-    final speciesData = speciesRes.data;
-    final flavorTextEntries = speciesData['flavor_text_entries'] as List;
-    final description = flavorTextEntries
+    dynamic speciesUrl = pokemonData['species']['url'];
+    Response<dynamic> speciesRes = await dio.get(speciesUrl);
+    dynamic speciesData = speciesRes.data;
+    List<dynamic> flavorTextEntries =
+        speciesData['flavor_text_entries'] as List;
+    dynamic description = flavorTextEntries
         .firstWhere(
           (e) => e['language']['name'] == 'en',
           orElse: () => flavorTextEntries.first,
         )['flavor_text']
         .replaceAll('\n', ' ');
 
-    final generaEntries = speciesData['genera'] as List;
-    final category = generaEntries.firstWhere(
+    List<dynamic> generaEntries = speciesData['genera'] as List;
+    dynamic category = generaEntries.firstWhere(
       (e) => e['language']['name'] == 'en',
       orElse: () => generaEntries.first,
     )['genus'];

@@ -36,9 +36,20 @@ class InformationSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          Row(
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
             children: pokemon.types
-                .map((type) => TypeChip(type: type))
+                .map(
+                  (type) => TypeChip(
+                    type: type,
+                    fontSize: 10,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                  ),
+                )
                 .toList(),
           ),
         ],

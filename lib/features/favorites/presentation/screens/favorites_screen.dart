@@ -39,7 +39,8 @@ class FavoritesScreen extends ConsumerWidget {
                 return Dismissible(
                   key: Key('fav_${pokemon.id}'),
                   direction: DismissDirection.endToStart,
-                  background: Container(
+                  //TODO: No funciona
+                  /* background:  Container(
                     margin: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 16,
@@ -70,7 +71,7 @@ class FavoritesScreen extends ConsumerWidget {
                         ),
                       ],
                     ),
-                  ),
+                  ), */
                   resizeDuration: const Duration(milliseconds: 300),
                   movementDuration: const Duration(milliseconds: 200),
                   onDismissed: (direction) {
