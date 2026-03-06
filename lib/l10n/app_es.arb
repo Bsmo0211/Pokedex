@@ -113,5 +113,15 @@
   "typeSteel": "Acero",
   "@typeSteel": {"description": "Color"},
   "typeWater": "Agua",
-  "@typeWater": {"description": "Color"}
+  "@typeWater": {"description": "Color"},
+
+  
+    "height": "ALTURA",
+    "weight": "PESO",
+    "category": "CATEGORÍA",
+    "ability": "HABILIDAD",
+    "gender": "GÉNERO",
+    "weaknesses": "Debilidades",
+    "noGender": "Sin género"
+
 }

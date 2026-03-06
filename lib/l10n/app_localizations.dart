@@ -355,6 +355,48 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Agua'**
   String get typeWater;
+
+  /// No description provided for @height.
+  ///
+  /// In es, this message translates to:
+  /// **'ALTURA'**
+  String get height;
+
+  /// No description provided for @weight.
+  ///
+  /// In es, this message translates to:
+  /// **'PESO'**
+  String get weight;
+
+  /// No description provided for @category.
+  ///
+  /// In es, this message translates to:
+  /// **'CATEGORÍA'**
+  String get category;
+
+  /// No description provided for @ability.
+  ///
+  /// In es, this message translates to:
+  /// **'HABILIDAD'**
+  String get ability;
+
+  /// No description provided for @gender.
+  ///
+  /// In es, this message translates to:
+  /// **'GÉNERO'**
+  String get gender;
+
+  /// No description provided for @weaknesses.
+  ///
+  /// In es, this message translates to:
+  /// **'Debilidades'**
+  String get weaknesses;
+
+  /// No description provided for @noGender.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin género'**
+  String get noGender;
 }
 
 class _AppLocalizationsDelegate

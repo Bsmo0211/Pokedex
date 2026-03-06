@@ -143,4 +143,25 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get typeWater => 'Agua';
+
+  @override
+  String get height => 'ALTURA';
+
+  @override
+  String get weight => 'PESO';
+
+  @override
+  String get category => 'CATEGORÍA';
+
+  @override
+  String get ability => 'HABILIDAD';
+
+  @override
+  String get gender => 'GÉNERO';
+
+  @override
+  String get weaknesses => 'Debilidades';
+
+  @override
+  String get noGender => 'Sin género';
 }

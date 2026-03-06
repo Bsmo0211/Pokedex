@@ -103,5 +103,12 @@
   "typeSteel": "Steel",
   "@typeSteel": {"description": "Color"},
   "typeWater": "Water",
-  "@typeWater": {"description": "Color"}
+  "@typeWater": {"description": "Color"},
+  "height": "HEIGHT",
+    "weight": "WEIGHT",
+    "category": "CATEGORY",
+    "ability": "ABILITY",
+    "gender": "GENDER",
+    "weaknesses": "Weaknesses",
+    "noGender": "Genderless"
 }
