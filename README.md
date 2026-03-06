@@ -42,9 +42,9 @@ El proyecto está organizado en capas para separar responsabilidades y facilitar
 
 ## Capas de Seguridad
 * Abstracción de infraestructura: Uso de flutter_dotenv para gestionar endpoints, evitando el hardcoding de configuraciones sensibles.
-* 
+  
 * Control de versiones: El archivo .env ha sido excluido mediante .gitignore para prevenir fugas de datos al repositorio público.
-* 
+  
 * Inmutabilidad: Uso de Freezed para garantizar la integridad de los datos en tiempo de ejecución.
 
 ## Mejoras sobre el Diseño (UI/UX)
