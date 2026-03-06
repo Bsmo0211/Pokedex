@@ -1,11 +1,14 @@
 #  Pokédex App
 
 ## Instrucciones de Instalación
+
 1. **Clonar el repositorio:**
    `git clone <url-de-tu-repo>`
-2. **Instalar dependencias:**
+   
+3. **Instalar dependencias:**
    `flutter pub get`
-3. **Generar código (obligatorio para Freezed/Riverpod):**
+   
+5. **Generar código (obligatorio para Freezed/Riverpod):**
    ```bash
    dart run build_runner build --delete-conflicting-outputs
    
