@@ -12,7 +12,6 @@ class PokemonRepository {
 
   Future<Pokemon> fetchPokemon(String name) async {
     Map<String, int> damageCount = {};
-
     Dio dio = ref.read(dioProvider);
 
     Response<dynamic> pokemonRes = await dio.get(
@@ -23,25 +22,39 @@ class PokemonRepository {
     dynamic speciesUrl = pokemonData['species']['url'];
     Response<dynamic> speciesRes = await dio.get(speciesUrl);
     dynamic speciesData = speciesRes.data;
-    List<dynamic> flavorTextEntries =
-        speciesData['flavor_text_entries'] as List;
-    dynamic description = flavorTextEntries
-        .firstWhere(
-          (e) => e['language']['name'] == 'en',
-          orElse: () => flavorTextEntries.first,
-        )['flavor_text']
-        .replaceAll('\n', ' ');
+
+    List<dynamic> flavorEntries = speciesData['flavor_text_entries'] as List;
+    String descEn = _extractText(flavorEntries, 'en', 'flavor_text');
+    String descEs = _extractText(flavorEntries, 'es', 'flavor_text');
 
     List<dynamic> generaEntries = speciesData['genera'] as List;
-    dynamic category = generaEntries.firstWhere(
-      (e) => e['language']['name'] == 'en',
-      orElse: () => generaEntries.first,
-    )['genus'];
+    String catEn = _extractText(generaEntries, 'en', 'genus');
+    String catEs = _extractText(generaEntries, 'es', 'genus');
+
+    final abilityFutures = (pokemonData['abilities'] as List).map((a) async {
+      String url = a['ability']['url'];
+      String nameEnDefault = a['ability']['name'];
+
+      Response<dynamic> res = await dio.get(url);
+      List<dynamic> names = res.data['names'];
+
+      return {
+        'en': names.firstWhere(
+          (n) => n['language']['name'] == 'en',
+          orElse: () => {'name': nameEnDefault},
+        )['name'],
+        'es': names.firstWhere(
+          (n) => n['language']['name'] == 'es',
+          orElse: () => {'name': nameEnDefault},
+        )['name'],
+      };
+    }).toList();
+
+    final abilitiesResults = await Future.wait(abilityFutures);
 
     for (var typeEntry in pokemonData['types']) {
       String typeUrl = typeEntry['type']['url'];
       Response<dynamic> typeRes = await dio.get(typeUrl);
-
       for (var type in typeRes.data['damage_relations']['double_damage_from']) {
         String typeName = type['name'];
         damageCount[typeName] = (damageCount[typeName] ?? 0) + 1;
@@ -50,11 +63,8 @@ class PokemonRepository {
 
     int genderRate = speciesData['gender_rate'];
     bool isGenderless = genderRate == -1;
-
     double femalePercentage = isGenderless ? 0.0 : (genderRate / 8) * 100;
     double malePercentage = isGenderless ? 0.0 : 100.0 - femalePercentage;
-
-    List<String> weaknesses = damageCount.keys.toList();
 
     return Pokemon(
       id: pokemonData['id'],
@@ -67,16 +77,24 @@ class PokemonRepository {
           .toList(),
       weight: pokemonData['weight'],
       height: pokemonData['height'],
-      abilities: (pokemonData['abilities'] as List)
-          .map((a) => a['ability']['name'].toString())
-          .toList(),
-      description: description,
-      category: category,
-      weaknesses: weaknesses,
+      abilitiesEn: abilitiesResults.map((a) => a['en']!.toString()).toList(),
+      abilitiesEs: abilitiesResults.map((a) => a['es']!.toString()).toList(),
+      descriptionEn: descEn.replaceAll('\n', ' '),
+      descriptionEs: descEs.replaceAll('\n', ' '),
+      categoryEn: catEn,
+      categoryEs: catEs,
+      weaknesses: damageCount.keys.toList(),
       malePercentage: malePercentage,
       femalePercentage: femalePercentage,
       isGenderless: isGenderless,
     );
+  }
+
+  String _extractText(List<dynamic> entries, String lang, String key) {
+    return entries.firstWhere(
+      (e) => e['language']['name'] == lang,
+      orElse: () => entries.isNotEmpty ? entries.first : {key: ''},
+    )[key];
   }
 
   Future<List<Pokemon>> fetchPokemonList({
@@ -84,7 +102,6 @@ class PokemonRepository {
     int offset = 0,
   }) async {
     Dio dio = ref.read(dioProvider);
-
     Response<dynamic> response = await dio.get(
       'pokemon',
       queryParameters: {'limit': limit, 'offset': offset},
@@ -93,7 +110,6 @@ class PokemonRepository {
 
     final List<Future<Pokemon>> pokemonFutures = results.map((pokemon) async {
       Response<dynamic> detailRes = await dio.get(pokemon['url']);
-
       dynamic data = detailRes.data;
 
       return Pokemon(
@@ -107,9 +123,6 @@ class PokemonRepository {
             .toList(),
         weight: data['weight'] ?? 0,
         height: data['height'] ?? 0,
-        abilities: (data['abilities'] as List)
-            .map((a) => a['ability']['name'].toString())
-            .toList(),
       );
     }).toList();
 
