@@ -36,3 +36,13 @@ El proyecto está organizado en capas para separar responsabilidades y facilitar
 * Control de versiones: El archivo .env ha sido excluido mediante .gitignore para prevenir fugas de datos al repositorio público.
 * Inmutabilidad: Uso de Freezed para garantizar la integridad de los datos en tiempo de ejecución.
 
+##Mejoras sobre el Diseño (UI/UX)
+**Para asegurar una experiencia de usuario (UX) óptima, realicé las siguientes adaptaciones sobre el diseño original de Figma:
+
+* Paleta de colores: Implementé un esquema minimalista en blanco y negro para mejorar la legibilidad y el enfoque en el contenido visual (Modo claro y modo oscuro).
+
+* Manejo de estados de error: Añadí una validación robusta que detecta cuando la API no responde o no entrega datos. En estos casos, se muestra un widget informativo de "Intenté más tarde" en lugar de dejar la pantalla vacía, evitando frustraciones al usuario.
+
+* Navegación intuitiva: Integré iconos descriptivos en la navegación principal (inicio) para facilitar el flujo de usuario.
+
+* UX de filtrado: Optimizamos la forma de filtrar por categorías de Pokémon, haciendo que el proceso sea más rápido y eficiente comparado con la propuesta inicial de diseño.
