@@ -22,7 +22,7 @@ El proyecto está organizado en capas para separar responsabilidades y facilitar
 * **Models:** `Freezed` (inmutabilidad y generación de código).
 * **Internacionalización:** `flutter_localizations` (I18n).
 * **Configuración:** `flutter_dotenv` (variables de entorno).
-* 
+  
 ## Inteligencia Artificial   
 **Durante el desarrollo del proyecto, integré Gemini y GitHub Copilot como asistentes de ingeniería bajo los siguientes criterios:**
 
