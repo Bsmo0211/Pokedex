@@ -25,12 +25,12 @@ El proyecto está organizado en capas para separar responsabilidades y facilitar
 ## Inteligencia Artificial   
 **Durante el desarrollo del proyecto, integré Gemini y GitHub Copilot como asistentes de ingeniería bajo los siguientes criterios:**
 
-*Asistencia en el Boilerplate: Utilicé IA para acelerar la escritura de código repetitivo (boilerplate), como las estructuras base de modelos con Freezed y los providers de Riverpod. Esto permitió enfocar el tiempo de desarrollo en la lógica de negocio y la arquitectura.
-*Refactorización y Clean Code: La IA fue clave para aplicar principios SOLID y DRY, sugiriendo mejoras en la legibilidad del código y optimizando peticiones asíncronas con Future.wait para un mejor rendimiento en la carga de datos.
-*Arquitectura y Seguridad: Consulté modelos de IA para definir la estructura de capas (Clean Architecture) y validar la implementación de capas de seguridad (uso de flutter_dotenv y manejo de .gitignore), asegurando que la configuración siguiera los estándares de la industria.
-*Validación Humana: Mi regla fundamental fue la validación manual. Todo el código generado por IA fue revisado, testeado y adaptado personalmente al contexto específico de mi aplicación para asegurar que no contuviera código innecesario o dependencias no deseadas. Entiendo la IA como una herramienta de apoyo, no como el autor final de la lógica del proyecto.
+* Asistencia en el Boilerplate: Utilicé IA para acelerar la escritura de código repetitivo (boilerplate), como las estructuras base de modelos con Freezed y los providers de Riverpod. Esto permitió enfocar el tiempo de desarrollo en la lógica de negocio y la arquitectura.
+* Refactorización y Clean Code: La IA fue clave para aplicar principios SOLID y DRY, sugiriendo mejoras en la legibilidad del código y optimizando peticiones asíncronas con Future.wait para un mejor rendimiento en la carga de datos.
+* Arquitectura y Seguridad: Consulté modelos de IA para definir la estructura de capas (Clean Architecture) y validar la implementación de capas de seguridad (uso de flutter_dotenv y manejo de .gitignore), asegurando que la configuración siguiera los estándares de la industria.
+* Validación Humana: Mi regla fundamental fue la validación manual. Todo el código generado por IA fue revisado, testeado y adaptado personalmente al contexto específico de mi aplicación para asegurar que no contuviera código innecesario o dependencias no deseadas. Entiendo la IA como una herramienta de apoyo, no como el autor final de la lógica del proyecto.
 
 ## Capas de Seguridad
-*Abstracción de infraestructura: Uso de flutter_dotenv para gestionar endpoints, evitando el hardcoding de configuraciones sensibles.
-*Control de versiones: El archivo .env ha sido excluido mediante .gitignore para prevenir fugas de datos al repositorio público.
-*Inmutabilidad: Uso de Freezed para garantizar la integridad de los datos en tiempo de ejecución.
+* Abstracción de infraestructura: Uso de flutter_dotenv para gestionar endpoints, evitando el hardcoding de configuraciones sensibles.
+* Control de versiones: El archivo .env ha sido excluido mediante .gitignore para prevenir fugas de datos al repositorio público.
+* Inmutabilidad: Uso de Freezed para garantizar la integridad de los datos en tiempo de ejecución.
