@@ -82,8 +82,7 @@ GoRouter appRouter(Ref ref) {
             routes: [
               GoRoute(
                 path: '/profile',
-                builder: (context, state) =>
-                    const Center(child: Text('Perfil')),
+                builder: (context, state) => const RegionScreen(),
               ),
             ],
           ),
