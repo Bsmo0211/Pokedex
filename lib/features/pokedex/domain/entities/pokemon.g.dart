@@ -14,16 +14,25 @@ _$PokemonImpl _$$PokemonImplFromJson(Map<String, dynamic> json) =>
       types: (json['types'] as List<dynamic>).map((e) => e as String).toList(),
       weight: (json['weight'] as num).toInt(),
       height: (json['height'] as num).toInt(),
-      abilities: (json['abilities'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      description: json['description'] as String? ?? '',
+      abilitiesEn:
+          (json['abilitiesEn'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      abilitiesEs:
+          (json['abilitiesEs'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      descriptionEn: json['descriptionEn'] as String? ?? '',
+      descriptionEs: json['descriptionEs'] as String? ?? '',
       weaknesses:
           (json['weaknesses'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      category: json['category'] as String? ?? '',
+      categoryEn: json['categoryEn'] as String? ?? '',
+      categoryEs: json['categoryEs'] as String? ?? '',
       malePercentage: (json['malePercentage'] as num?)?.toDouble() ?? 0.0,
       femalePercentage: (json['femalePercentage'] as num?)?.toDouble() ?? 0.0,
       isGenderless: json['isGenderless'] as bool? ?? false,
@@ -37,10 +46,13 @@ Map<String, dynamic> _$$PokemonImplToJson(_$PokemonImpl instance) =>
       'types': instance.types,
       'weight': instance.weight,
       'height': instance.height,
-      'abilities': instance.abilities,
-      'description': instance.description,
+      'abilitiesEn': instance.abilitiesEn,
+      'abilitiesEs': instance.abilitiesEs,
+      'descriptionEn': instance.descriptionEn,
+      'descriptionEs': instance.descriptionEs,
       'weaknesses': instance.weaknesses,
-      'category': instance.category,
+      'categoryEn': instance.categoryEn,
+      'categoryEs': instance.categoryEs,
       'malePercentage': instance.malePercentage,
       'femalePercentage': instance.femalePercentage,
       'isGenderless': instance.isGenderless,
