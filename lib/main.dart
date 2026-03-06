@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pokedex/core/router/app_router.dart';
 import 'package:pokedex/l10n/app_localizations.dart';
 
@@ -12,13 +13,12 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(appRouterProvider);
+    GoRouter router = ref.watch(appRouterProvider);
 
     return MaterialApp.router(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      locale: const Locale('en'),
       title: 'Pokédex',
       routerConfig: router,
 
