@@ -1,5 +1,14 @@
 #  Pokédex App
 
+## Instrucciones de Instalación
+1. **Clonar el repositorio:**
+   `git clone <url-de-tu-repo>`
+2. **Instalar dependencias:**
+   `flutter pub get`
+3. **Generar código (obligatorio para Freezed/Riverpod):**
+   ```bash
+   dart run build_runner build --delete-conflicting-outputs
+   
 ##  Arquitectura del Proyecto
 El proyecto está organizado en capas para separar responsabilidades y facilitar la escalabilidad:
 
@@ -13,15 +22,7 @@ El proyecto está organizado en capas para separar responsabilidades y facilitar
 * **Models:** `Freezed` (inmutabilidad y generación de código).
 * **Internacionalización:** `flutter_localizations` (I18n).
 * **Configuración:** `flutter_dotenv` (variables de entorno).
-
-## Instrucciones de Instalación
-1. **Clonar el repositorio:**
-   `git clone <url-de-tu-repo>`
-2. **Instalar dependencias:**
-   `flutter pub get`
-3. **Generar código (obligatorio para Freezed/Riverpod):**
-   ```bash
-   dart run build_runner build --delete-conflicting-outputs
+* 
 ## Inteligencia Artificial   
 **Durante el desarrollo del proyecto, integré Gemini y GitHub Copilot como asistentes de ingeniería bajo los siguientes criterios:**
 
