@@ -12,10 +12,13 @@ class Pokemon with _$Pokemon {
     required List<String> types,
     required int weight,
     required int height,
-    required String description,
     required List<String> abilities,
-    required List<String> weaknesses,
-    required String category,
+    @Default('') String description,
+    @Default([]) List<String> weaknesses,
+    @Default('') String category,
+    @Default(0.0) double malePercentage,
+    @Default(0.0) double femalePercentage,
+    @Default(false) bool isGenderless,
   }) = _Pokemon;
 
   factory Pokemon.fromJson(Map<String, dynamic> json) =>

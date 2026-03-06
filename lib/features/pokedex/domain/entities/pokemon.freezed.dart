@@ -27,10 +27,13 @@ mixin _$Pokemon {
   List<String> get types => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
   List<String> get abilities => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   List<String> get weaknesses => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
+  double get malePercentage => throw _privateConstructorUsedError;
+  double get femalePercentage => throw _privateConstructorUsedError;
+  bool get isGenderless => throw _privateConstructorUsedError;
 
   /// Serializes this Pokemon to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,10 +56,13 @@ abstract class $PokemonCopyWith<$Res> {
     List<String> types,
     int weight,
     int height,
-    String description,
     List<String> abilities,
+    String description,
     List<String> weaknesses,
     String category,
+    double malePercentage,
+    double femalePercentage,
+    bool isGenderless,
   });
 }
 
@@ -81,10 +87,13 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
     Object? types = null,
     Object? weight = null,
     Object? height = null,
-    Object? description = null,
     Object? abilities = null,
+    Object? description = null,
     Object? weaknesses = null,
     Object? category = null,
+    Object? malePercentage = null,
+    Object? femalePercentage = null,
+    Object? isGenderless = null,
   }) {
     return _then(
       _value.copyWith(
@@ -112,14 +121,14 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
                 ? _value.height
                 : height // ignore: cast_nullable_to_non_nullable
                       as int,
-            description: null == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                      as String,
             abilities: null == abilities
                 ? _value.abilities
                 : abilities // ignore: cast_nullable_to_non_nullable
                       as List<String>,
+            description: null == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String,
             weaknesses: null == weaknesses
                 ? _value.weaknesses
                 : weaknesses // ignore: cast_nullable_to_non_nullable
@@ -128,6 +137,18 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
                 ? _value.category
                 : category // ignore: cast_nullable_to_non_nullable
                       as String,
+            malePercentage: null == malePercentage
+                ? _value.malePercentage
+                : malePercentage // ignore: cast_nullable_to_non_nullable
+                      as double,
+            femalePercentage: null == femalePercentage
+                ? _value.femalePercentage
+                : femalePercentage // ignore: cast_nullable_to_non_nullable
+                      as double,
+            isGenderless: null == isGenderless
+                ? _value.isGenderless
+                : isGenderless // ignore: cast_nullable_to_non_nullable
+                      as bool,
           )
           as $Val,
     );
@@ -149,10 +170,13 @@ abstract class _$$PokemonImplCopyWith<$Res> implements $PokemonCopyWith<$Res> {
     List<String> types,
     int weight,
     int height,
-    String description,
     List<String> abilities,
+    String description,
     List<String> weaknesses,
     String category,
+    double malePercentage,
+    double femalePercentage,
+    bool isGenderless,
   });
 }
 
@@ -176,10 +200,13 @@ class __$$PokemonImplCopyWithImpl<$Res>
     Object? types = null,
     Object? weight = null,
     Object? height = null,
-    Object? description = null,
     Object? abilities = null,
+    Object? description = null,
     Object? weaknesses = null,
     Object? category = null,
+    Object? malePercentage = null,
+    Object? femalePercentage = null,
+    Object? isGenderless = null,
   }) {
     return _then(
       _$PokemonImpl(
@@ -207,14 +234,14 @@ class __$$PokemonImplCopyWithImpl<$Res>
             ? _value.height
             : height // ignore: cast_nullable_to_non_nullable
                   as int,
-        description: null == description
-            ? _value.description
-            : description // ignore: cast_nullable_to_non_nullable
-                  as String,
         abilities: null == abilities
             ? _value._abilities
             : abilities // ignore: cast_nullable_to_non_nullable
                   as List<String>,
+        description: null == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
         weaknesses: null == weaknesses
             ? _value._weaknesses
             : weaknesses // ignore: cast_nullable_to_non_nullable
@@ -223,6 +250,18 @@ class __$$PokemonImplCopyWithImpl<$Res>
             ? _value.category
             : category // ignore: cast_nullable_to_non_nullable
                   as String,
+        malePercentage: null == malePercentage
+            ? _value.malePercentage
+            : malePercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        femalePercentage: null == femalePercentage
+            ? _value.femalePercentage
+            : femalePercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        isGenderless: null == isGenderless
+            ? _value.isGenderless
+            : isGenderless // ignore: cast_nullable_to_non_nullable
+                  as bool,
       ),
     );
   }
@@ -238,10 +277,13 @@ class _$PokemonImpl implements _Pokemon {
     required final List<String> types,
     required this.weight,
     required this.height,
-    required this.description,
     required final List<String> abilities,
-    required final List<String> weaknesses,
-    required this.category,
+    this.description = '',
+    final List<String> weaknesses = const [],
+    this.category = '',
+    this.malePercentage = 0.0,
+    this.femalePercentage = 0.0,
+    this.isGenderless = false,
   }) : _types = types,
        _abilities = abilities,
        _weaknesses = weaknesses;
@@ -267,8 +309,6 @@ class _$PokemonImpl implements _Pokemon {
   final int weight;
   @override
   final int height;
-  @override
-  final String description;
   final List<String> _abilities;
   @override
   List<String> get abilities {
@@ -277,8 +317,12 @@ class _$PokemonImpl implements _Pokemon {
     return EqualUnmodifiableListView(_abilities);
   }
 
+  @override
+  @JsonKey()
+  final String description;
   final List<String> _weaknesses;
   @override
+  @JsonKey()
   List<String> get weaknesses {
     if (_weaknesses is EqualUnmodifiableListView) return _weaknesses;
     // ignore: implicit_dynamic_type
@@ -286,11 +330,21 @@ class _$PokemonImpl implements _Pokemon {
   }
 
   @override
+  @JsonKey()
   final String category;
+  @override
+  @JsonKey()
+  final double malePercentage;
+  @override
+  @JsonKey()
+  final double femalePercentage;
+  @override
+  @JsonKey()
+  final bool isGenderless;
 
   @override
   String toString() {
-    return 'Pokemon(id: $id, name: $name, imageUrl: $imageUrl, types: $types, weight: $weight, height: $height, description: $description, abilities: $abilities, weaknesses: $weaknesses, category: $category)';
+    return 'Pokemon(id: $id, name: $name, imageUrl: $imageUrl, types: $types, weight: $weight, height: $height, abilities: $abilities, description: $description, weaknesses: $weaknesses, category: $category, malePercentage: $malePercentage, femalePercentage: $femalePercentage, isGenderless: $isGenderless)';
   }
 
   @override
@@ -305,18 +359,24 @@ class _$PokemonImpl implements _Pokemon {
             const DeepCollectionEquality().equals(other._types, _types) &&
             (identical(other.weight, weight) || other.weight == weight) &&
             (identical(other.height, height) || other.height == height) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
             const DeepCollectionEquality().equals(
               other._abilities,
               _abilities,
             ) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             const DeepCollectionEquality().equals(
               other._weaknesses,
               _weaknesses,
             ) &&
             (identical(other.category, category) ||
-                other.category == category));
+                other.category == category) &&
+            (identical(other.malePercentage, malePercentage) ||
+                other.malePercentage == malePercentage) &&
+            (identical(other.femalePercentage, femalePercentage) ||
+                other.femalePercentage == femalePercentage) &&
+            (identical(other.isGenderless, isGenderless) ||
+                other.isGenderless == isGenderless));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -329,10 +389,13 @@ class _$PokemonImpl implements _Pokemon {
     const DeepCollectionEquality().hash(_types),
     weight,
     height,
-    description,
     const DeepCollectionEquality().hash(_abilities),
+    description,
     const DeepCollectionEquality().hash(_weaknesses),
     category,
+    malePercentage,
+    femalePercentage,
+    isGenderless,
   );
 
   /// Create a copy of Pokemon
@@ -357,10 +420,13 @@ abstract class _Pokemon implements Pokemon {
     required final List<String> types,
     required final int weight,
     required final int height,
-    required final String description,
     required final List<String> abilities,
-    required final List<String> weaknesses,
-    required final String category,
+    final String description,
+    final List<String> weaknesses,
+    final String category,
+    final double malePercentage,
+    final double femalePercentage,
+    final bool isGenderless,
   }) = _$PokemonImpl;
 
   factory _Pokemon.fromJson(Map<String, dynamic> json) = _$PokemonImpl.fromJson;
@@ -378,13 +444,19 @@ abstract class _Pokemon implements Pokemon {
   @override
   int get height;
   @override
-  String get description;
-  @override
   List<String> get abilities;
+  @override
+  String get description;
   @override
   List<String> get weaknesses;
   @override
   String get category;
+  @override
+  double get malePercentage;
+  @override
+  double get femalePercentage;
+  @override
+  bool get isGenderless;
 
   /// Create a copy of Pokemon
   /// with the given fields replaced by the non-null parameter values.

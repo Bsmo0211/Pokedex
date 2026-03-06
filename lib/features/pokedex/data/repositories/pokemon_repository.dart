@@ -11,6 +11,8 @@ class PokemonRepository {
   PokemonRepository(this.ref);
 
   Future<Pokemon> fetchPokemon(String name) async {
+    Map<String, int> damageCount = {};
+
     Dio dio = ref.read(dioProvider);
 
     Response<dynamic> pokemonRes = await dio.get(
@@ -36,8 +38,6 @@ class PokemonRepository {
       orElse: () => generaEntries.first,
     )['genus'];
 
-    Map<String, int> damageCount = {};
-
     for (var typeEntry in pokemonData['types']) {
       String typeUrl = typeEntry['type']['url'];
       Response<dynamic> typeRes = await dio.get(typeUrl);
@@ -47,6 +47,12 @@ class PokemonRepository {
         damageCount[typeName] = (damageCount[typeName] ?? 0) + 1;
       }
     }
+
+    int genderRate = speciesData['gender_rate'];
+    bool isGenderless = genderRate == -1;
+
+    double femalePercentage = isGenderless ? 0.0 : (genderRate / 8) * 100;
+    double malePercentage = isGenderless ? 0.0 : 100.0 - femalePercentage;
 
     List<String> weaknesses = damageCount.keys.toList();
 
@@ -67,6 +73,9 @@ class PokemonRepository {
       description: description,
       category: category,
       weaknesses: weaknesses,
+      malePercentage: malePercentage,
+      femalePercentage: femalePercentage,
+      isGenderless: isGenderless,
     );
   }
 
@@ -101,9 +110,6 @@ class PokemonRepository {
         abilities: (data['abilities'] as List)
             .map((a) => a['ability']['name'].toString())
             .toList(),
-        category: '',
-        description: '',
-        weaknesses: [],
       );
     }).toList();
 

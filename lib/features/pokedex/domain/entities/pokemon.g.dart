@@ -14,14 +14,19 @@ _$PokemonImpl _$$PokemonImplFromJson(Map<String, dynamic> json) =>
       types: (json['types'] as List<dynamic>).map((e) => e as String).toList(),
       weight: (json['weight'] as num).toInt(),
       height: (json['height'] as num).toInt(),
-      description: json['description'] as String,
       abilities: (json['abilities'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      weaknesses: (json['weaknesses'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      category: json['category'] as String,
+      description: json['description'] as String? ?? '',
+      weaknesses:
+          (json['weaknesses'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      category: json['category'] as String? ?? '',
+      malePercentage: (json['malePercentage'] as num?)?.toDouble() ?? 0.0,
+      femalePercentage: (json['femalePercentage'] as num?)?.toDouble() ?? 0.0,
+      isGenderless: json['isGenderless'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$PokemonImplToJson(_$PokemonImpl instance) =>
@@ -32,8 +37,11 @@ Map<String, dynamic> _$$PokemonImplToJson(_$PokemonImpl instance) =>
       'types': instance.types,
       'weight': instance.weight,
       'height': instance.height,
-      'description': instance.description,
       'abilities': instance.abilities,
+      'description': instance.description,
       'weaknesses': instance.weaknesses,
       'category': instance.category,
+      'malePercentage': instance.malePercentage,
+      'femalePercentage': instance.femalePercentage,
+      'isGenderless': instance.isGenderless,
     };
