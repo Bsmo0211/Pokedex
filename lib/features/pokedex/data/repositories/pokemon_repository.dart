@@ -10,6 +10,13 @@ class PokemonRepository {
   final Ref ref;
   PokemonRepository(this.ref);
 
+  String _extractText(List<dynamic> entries, String lang, String key) {
+    return entries.firstWhere(
+      (e) => e['language']['name'] == lang,
+      orElse: () => entries.isNotEmpty ? entries.first : {key: ''},
+    )[key];
+  }
+
   Future<Pokemon> fetchPokemon(String name) async {
     Map<String, int> damageCount = {};
     Dio dio = ref.read(dioProvider);
@@ -88,13 +95,6 @@ class PokemonRepository {
       femalePercentage: femalePercentage,
       isGenderless: isGenderless,
     );
-  }
-
-  String _extractText(List<dynamic> entries, String lang, String key) {
-    return entries.firstWhere(
-      (e) => e['language']['name'] == lang,
-      orElse: () => entries.isNotEmpty ? entries.first : {key: ''},
-    )[key];
   }
 
   Future<List<Pokemon>> fetchPokemonList({
