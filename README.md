@@ -36,7 +36,7 @@ El proyecto está organizado en capas para separar responsabilidades y facilitar
 * Control de versiones: El archivo .env ha sido excluido mediante .gitignore para prevenir fugas de datos al repositorio público.
 * Inmutabilidad: Uso de Freezed para garantizar la integridad de los datos en tiempo de ejecución.
 
-##Mejoras sobre el Diseño (UI/UX)
+## Mejoras sobre el Diseño (UI/UX)
 **Para asegurar una experiencia de usuario (UX) óptima, realicé las siguientes adaptaciones sobre el diseño original de Figma:
 
 * Paleta de colores: Implementé un esquema minimalista en blanco y negro para mejorar la legibilidad y el enfoque en el contenido visual (Modo claro y modo oscuro).
