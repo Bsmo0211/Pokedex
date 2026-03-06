@@ -10,7 +10,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:pokedex/features/onboarding/presentation/screen/onboarding_screen.dart';
 import 'package:pokedex/core/presentation/screens/splash_screen.dart';
 import 'package:pokedex/features/onboarding/presentation/providers/onboarding_storage_provider.dart';
-import 'package:flutter/material.dart';
 
 part 'app_router.g.dart';
 
