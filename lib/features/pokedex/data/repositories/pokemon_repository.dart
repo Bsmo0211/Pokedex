@@ -36,6 +36,20 @@ class PokemonRepository {
       orElse: () => generaEntries.first,
     )['genus'];
 
+    Map<String, int> damageCount = {};
+
+    for (var typeEntry in pokemonData['types']) {
+      String typeUrl = typeEntry['type']['url'];
+      Response<dynamic> typeRes = await dio.get(typeUrl);
+
+      for (var type in typeRes.data['damage_relations']['double_damage_from']) {
+        String typeName = type['name'];
+        damageCount[typeName] = (damageCount[typeName] ?? 0) + 1;
+      }
+    }
+
+    List<String> weaknesses = damageCount.keys.toList();
+
     return Pokemon(
       id: pokemonData['id'],
       name: pokemonData['name'],
@@ -52,6 +66,7 @@ class PokemonRepository {
           .toList(),
       description: description,
       category: category,
+      weaknesses: weaknesses,
     );
   }
 
@@ -88,6 +103,7 @@ class PokemonRepository {
             .toList(),
         category: '',
         description: '',
+        weaknesses: [],
       );
     }).toList();
 

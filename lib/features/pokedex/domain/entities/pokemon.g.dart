@@ -18,6 +18,9 @@ _$PokemonImpl _$$PokemonImplFromJson(Map<String, dynamic> json) =>
       abilities: (json['abilities'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      weaknesses: (json['weaknesses'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       category: json['category'] as String,
     );
 
@@ -31,5 +34,6 @@ Map<String, dynamic> _$$PokemonImplToJson(_$PokemonImpl instance) =>
       'height': instance.height,
       'description': instance.description,
       'abilities': instance.abilities,
+      'weaknesses': instance.weaknesses,
       'category': instance.category,
     };

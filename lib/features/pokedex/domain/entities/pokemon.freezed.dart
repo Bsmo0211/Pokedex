@@ -29,6 +29,7 @@ mixin _$Pokemon {
   int get height => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get abilities => throw _privateConstructorUsedError;
+  List<String> get weaknesses => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
 
   /// Serializes this Pokemon to a JSON map.
@@ -54,6 +55,7 @@ abstract class $PokemonCopyWith<$Res> {
     int height,
     String description,
     List<String> abilities,
+    List<String> weaknesses,
     String category,
   });
 }
@@ -81,6 +83,7 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
     Object? height = null,
     Object? description = null,
     Object? abilities = null,
+    Object? weaknesses = null,
     Object? category = null,
   }) {
     return _then(
@@ -117,6 +120,10 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
                 ? _value.abilities
                 : abilities // ignore: cast_nullable_to_non_nullable
                       as List<String>,
+            weaknesses: null == weaknesses
+                ? _value.weaknesses
+                : weaknesses // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
             category: null == category
                 ? _value.category
                 : category // ignore: cast_nullable_to_non_nullable
@@ -144,6 +151,7 @@ abstract class _$$PokemonImplCopyWith<$Res> implements $PokemonCopyWith<$Res> {
     int height,
     String description,
     List<String> abilities,
+    List<String> weaknesses,
     String category,
   });
 }
@@ -170,6 +178,7 @@ class __$$PokemonImplCopyWithImpl<$Res>
     Object? height = null,
     Object? description = null,
     Object? abilities = null,
+    Object? weaknesses = null,
     Object? category = null,
   }) {
     return _then(
@@ -206,6 +215,10 @@ class __$$PokemonImplCopyWithImpl<$Res>
             ? _value._abilities
             : abilities // ignore: cast_nullable_to_non_nullable
                   as List<String>,
+        weaknesses: null == weaknesses
+            ? _value._weaknesses
+            : weaknesses // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
         category: null == category
             ? _value.category
             : category // ignore: cast_nullable_to_non_nullable
@@ -227,9 +240,11 @@ class _$PokemonImpl implements _Pokemon {
     required this.height,
     required this.description,
     required final List<String> abilities,
+    required final List<String> weaknesses,
     required this.category,
   }) : _types = types,
-       _abilities = abilities;
+       _abilities = abilities,
+       _weaknesses = weaknesses;
 
   factory _$PokemonImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonImplFromJson(json);
@@ -262,12 +277,20 @@ class _$PokemonImpl implements _Pokemon {
     return EqualUnmodifiableListView(_abilities);
   }
 
+  final List<String> _weaknesses;
+  @override
+  List<String> get weaknesses {
+    if (_weaknesses is EqualUnmodifiableListView) return _weaknesses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_weaknesses);
+  }
+
   @override
   final String category;
 
   @override
   String toString() {
-    return 'Pokemon(id: $id, name: $name, imageUrl: $imageUrl, types: $types, weight: $weight, height: $height, description: $description, abilities: $abilities, category: $category)';
+    return 'Pokemon(id: $id, name: $name, imageUrl: $imageUrl, types: $types, weight: $weight, height: $height, description: $description, abilities: $abilities, weaknesses: $weaknesses, category: $category)';
   }
 
   @override
@@ -288,6 +311,10 @@ class _$PokemonImpl implements _Pokemon {
               other._abilities,
               _abilities,
             ) &&
+            const DeepCollectionEquality().equals(
+              other._weaknesses,
+              _weaknesses,
+            ) &&
             (identical(other.category, category) ||
                 other.category == category));
   }
@@ -304,6 +331,7 @@ class _$PokemonImpl implements _Pokemon {
     height,
     description,
     const DeepCollectionEquality().hash(_abilities),
+    const DeepCollectionEquality().hash(_weaknesses),
     category,
   );
 
@@ -331,6 +359,7 @@ abstract class _Pokemon implements Pokemon {
     required final int height,
     required final String description,
     required final List<String> abilities,
+    required final List<String> weaknesses,
     required final String category,
   }) = _$PokemonImpl;
 
@@ -352,6 +381,8 @@ abstract class _Pokemon implements Pokemon {
   String get description;
   @override
   List<String> get abilities;
+  @override
+  List<String> get weaknesses;
   @override
   String get category;
 

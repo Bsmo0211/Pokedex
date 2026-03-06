@@ -14,6 +14,7 @@ class Pokemon with _$Pokemon {
     required int height,
     required String description,
     required List<String> abilities,
+    required List<String> weaknesses,
     required String category,
   }) = _Pokemon;
 
