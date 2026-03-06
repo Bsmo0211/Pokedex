@@ -164,4 +164,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noGender => 'Genderless';
+
+  @override
+  String get profileTitle => 'Trainer Profile';
+
+  @override
+  String get nameLabel => 'Trainer Name';
+
+  @override
+  String get emailLabel => 'Email';
+
+  @override
+  String get nameRequired => 'Name is required';
+
+  @override
+  String get invalidEmail => 'Please enter a valid email';
 }

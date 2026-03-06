@@ -122,6 +122,12 @@
     "ability": "HABILIDAD",
     "gender": "GÉNERO",
     "weaknesses": "Debilidades",
-    "noGender": "Sin género"
+    "noGender": "Sin género",
+
+  "profileTitle": "Perfil de Entrenador",
+  "nameLabel": "Nombre del Entrenador",
+  "emailLabel": "Correo electrónico",
+  "nameRequired": "El nombre es obligatorio",
+  "invalidEmail": "Introduce un correo válido"
 
 }

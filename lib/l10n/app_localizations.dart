@@ -397,6 +397,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Sin género'**
   String get noGender;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil de Entrenador'**
+  String get profileTitle;
+
+  /// No description provided for @nameLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre del Entrenador'**
+  String get nameLabel;
+
+  /// No description provided for @emailLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo electrónico'**
+  String get emailLabel;
+
+  /// No description provided for @nameRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'El nombre es obligatorio'**
+  String get nameRequired;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Introduce un correo válido'**
+  String get invalidEmail;
 }
 
 class _AppLocalizationsDelegate

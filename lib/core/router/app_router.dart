@@ -5,6 +5,7 @@ import 'package:pokedex/features/favorites/presentation/screens/favorites_screen
 import 'package:pokedex/features/home/presentation/screens/main_screen.dart';
 import 'package:pokedex/features/pokedex/presentation/screens/pokedex_screen.dart';
 import 'package:pokedex/features/pokedex/presentation/screens/pokemon_details_screen.dart';
+import 'package:pokedex/features/profile/presentation/screen/profile_screen.dart';
 import 'package:pokedex/features/regions/presentation/screen/regions_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:pokedex/features/onboarding/presentation/screen/onboarding_screen.dart';
@@ -81,7 +82,7 @@ GoRouter appRouter(Ref ref) {
             routes: [
               GoRoute(
                 path: '/profile',
-                builder: (context, state) => const RegionScreen(),
+                builder: (context, state) => const Profile(),
               ),
             ],
           ),
