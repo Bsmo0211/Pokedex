@@ -116,7 +116,10 @@ class _PokedexScreenState extends ConsumerState<PokedexScreen> {
                       );
                     }
 
-                    return PokemonCard(pokemon: filteredList[index]);
+                    return SizedBox(
+                      width: double.infinity,
+                      child: PokemonCard(pokemon: filteredList[index]),
+                    );
                   },
                 ),
               ),

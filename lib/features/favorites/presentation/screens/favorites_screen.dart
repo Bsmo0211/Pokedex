@@ -34,13 +34,14 @@ class FavoritesScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 10),
               itemCount: favoriteList.length,
               itemBuilder: (context, index) {
-                final pokemon = favoriteList[index];
+                Pokemon pokemon = favoriteList[index];
 
                 return Dismissible(
                   key: Key('fav_${pokemon.id}'),
                   direction: DismissDirection.endToStart,
                   //TODO: No funciona
-                  /* background:  Container(
+                  background: Container(
+                    height: 120,
                     margin: const EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 16,
@@ -50,28 +51,27 @@ class FavoritesScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(24),
                     ),
                     alignment: Alignment.centerRight,
-
                     padding: const EdgeInsets.only(right: 30),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: const Row(
+                      // Cambié a Row para que el icono y texto se alineen bien
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Icon(
                           Icons.delete_outline,
                           color: Colors.white,
                           size: 32,
                         ),
-                        SizedBox(height: 4),
+                        SizedBox(width: 10),
                         Text(
                           'Eliminar',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 12,
                           ),
                         ),
                       ],
                     ),
-                  ), */
+                  ),
                   resizeDuration: const Duration(milliseconds: 300),
                   movementDuration: const Duration(milliseconds: 200),
                   onDismissed: (direction) {
@@ -93,7 +93,10 @@ class FavoritesScreen extends ConsumerWidget {
                     );
                   },
 
-                  child: PokemonCard(pokemon: pokemon),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: PokemonCard(pokemon: pokemon),
+                  ),
                 );
               },
             ),
