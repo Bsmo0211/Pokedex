@@ -3,7 +3,7 @@
 ## Instrucciones de Instalación
 
 1. **Clonar el repositorio:**
-   `git clone <url-de-tu-repo>`
+   `git clone https://github.com/Bsmo0211/Pokedex`
    
 3. **Instalar dependencias:**
    `flutter pub get`
