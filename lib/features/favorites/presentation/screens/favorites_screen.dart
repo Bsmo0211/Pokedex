@@ -40,7 +40,6 @@ class FavoritesScreen extends ConsumerWidget {
                   return Dismissible(
                     key: Key('fav_${pokemon.id}'),
                     direction: DismissDirection.endToStart,
-                    //TODO: No funciona
                     background: Container(
                       height: 120,
                       margin: const EdgeInsets.symmetric(
