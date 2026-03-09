@@ -74,74 +74,76 @@ class _PokedexScreenState extends ConsumerState<PokedexScreen> {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          l10n.pokedexTitle,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            l10n.pokedexTitle,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: pokemonListAsync.when(
-        data: (pokemonList) {
-          List<Pokemon> filteredList = _getFilteredPokemon(pokemonList);
+        body: pokemonListAsync.when(
+          data: (pokemonList) {
+            List<Pokemon> filteredList = _getFilteredPokemon(pokemonList);
 
-          return Column(
-            children: [
-              FilterBar(
-                searchQuery: searchQuery,
-                selectedTypes: selectedTypes,
-                onFiltersChanged: () {
-                  setState(() {});
-                },
-                onSearchChanged: (value) {
-                  setState(() => searchQuery = value);
-                },
-              ),
-              Expanded(
-                child: ListView.builder(
-                  controller: _scrollController,
-
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount:
-                      filteredList.length +
-                      (pokemonListAsync.isLoading ? 1 : 0),
-                  itemBuilder: (context, index) {
-                    if (index == filteredList.length) {
-                      return const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-                    }
-
-                    return SizedBox(
-                      width: double.infinity,
-                      child: PokemonCard(pokemon: filteredList[index]),
-                    );
+            return Column(
+              children: [
+                FilterBar(
+                  searchQuery: searchQuery,
+                  selectedTypes: selectedTypes,
+                  onFiltersChanged: () {
+                    setState(() {});
+                  },
+                  onSearchChanged: (value) {
+                    setState(() => searchQuery = value);
                   },
                 ),
-              ),
-            ],
-          );
-        },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => PokedexErrorWidget(
-          title: l10n.errorTitle,
-          massage: l10n.errorTitle,
-          needButton: true,
-          onRetry: () async {
-            ref.read(isManualLoadingProvider.notifier).state = true;
-            try {
-              ref.invalidate(pokemonListProvider);
-              await ref.read(pokemonListProvider.future);
-            } catch (e) {
-              debugPrint("Error: $e");
-            } finally {
-              ref.read(isManualLoadingProvider.notifier).state = false;
-            }
+                Expanded(
+                  child: ListView.builder(
+                    controller: _scrollController,
+
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemCount:
+                        filteredList.length +
+                        (pokemonListAsync.isLoading ? 1 : 0),
+                    itemBuilder: (context, index) {
+                      if (index == filteredList.length) {
+                        return const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+
+                      return SizedBox(
+                        width: double.infinity,
+                        child: PokemonCard(pokemon: filteredList[index]),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
           },
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (err, stack) => PokedexErrorWidget(
+            title: l10n.errorTitle,
+            massage: l10n.errorTitle,
+            needButton: true,
+            onRetry: () async {
+              ref.read(isManualLoadingProvider.notifier).state = true;
+              try {
+                ref.invalidate(pokemonListProvider);
+                await ref.read(pokemonListProvider.future);
+              } catch (e) {
+                debugPrint("Error: $e");
+              } finally {
+                ref.read(isManualLoadingProvider.notifier).state = false;
+              }
+            },
+          ),
         ),
       ),
     );
