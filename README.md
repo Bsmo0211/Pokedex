@@ -11,6 +11,9 @@
 5. **Generar código (obligatorio para Freezed/Riverpod):**
    ```bash
    dart run build_runner build --delete-conflicting-outputs
+
+3. **Ejecutar la aplicación:**
+   `flutter run`
    
 ##  Arquitectura del Proyecto
 El proyecto está organizado en capas para separar responsabilidades y facilitar la escalabilidad:
